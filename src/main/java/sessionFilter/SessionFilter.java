@@ -1,4 +1,4 @@
-package sessionFilter;
+/*package sessionFilter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -142,3 +142,4 @@ public class SessionFilter implements Filter {
 		Filter.super.destroy();
 	}
 }
+*/
