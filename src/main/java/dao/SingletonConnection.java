@@ -16,7 +16,7 @@ public class SingletonConnection {
 
 			String mysqlUserName = "root";
 
-			String mysqlPassword = "ayman2002+";
+			String mysqlPassword = "password";
 
 			ret = DriverManager.getConnection(mysqlConnUrl, mysqlUserName, mysqlPassword);
 

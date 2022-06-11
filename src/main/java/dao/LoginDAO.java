@@ -28,12 +28,14 @@ public class LoginDAO {
 		PreparedStatement ps ;
 		String role =null;
 		try {
-			ps = conn.prepareStatement("select roles from users where username=? and password=? ");
+			ps = conn.prepareStatement("select role from users where username=? and password=? ");
 			ps.setString(1, user.getLogin());
+			System.out.println(user.getLogin());
 			ps.setString(2, user.getMdp());
+			System.out.println(user.getMdp());
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
-				role = rs.getString("roles");
+				role = rs.getString("role");
 			}
 		}catch (Exception e) {
 			// TODO: handle exception

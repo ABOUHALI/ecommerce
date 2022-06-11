@@ -53,36 +53,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" class="form-control" required name="nationalite"placeholder="nationalité">
-                      <div class="input-group-append">
-                        <span class="input-group-text">
-                          <i class="mdi mdi-check-circle-outline"></i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" class="form-control" required name="adresse"placeholder="Adresse">
-                      <div class="input-group-append">
-                        <span class="input-group-text">
-                          <i class="mdi mdi-check-circle-outline"></i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <div class="input-group">
-                      <input type="text" class="form-control" required name="codePostal"placeholder="code postal">
-                      <div class="input-group-append">
-                        <span class="input-group-text">
-                          <i class="mdi mdi-check-circle-outline"></i>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
+                  
                   <div class="form-group">
                     <div class="input-group">
                       <input type="text" class="form-control" required name="telephone"placeholder="Telephone">
