@@ -43,6 +43,7 @@ public class ClientDAO {
 					c.setEmail(rs.getString("email"));
 					c.setTelephone(rs.getString("telephone"));
 					c.setId_user(rs.getInt("idusers"));
+					
 					clients.add(c);
 				}
 			}catch (Exception e) {

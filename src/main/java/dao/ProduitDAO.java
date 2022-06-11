@@ -64,6 +64,7 @@ public class ProduitDAO {
 				byte[] imageBytes = outputStream.toByteArray();
 				 
 				String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+				produit.setBase64Image(base64Image);
 				produits.add(produit);
 			
 				inputStream.close();

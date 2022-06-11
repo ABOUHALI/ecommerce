@@ -21,12 +21,12 @@ public class FamilleDAO {
 		Connection conn = SingletonConnection.getConnection();
 		PreparedStatement ps;
 		try {
-			ps=conn.prepareStatement("insert into famille values(?,?)");
+			ps=conn.prepareStatement("insert into famille(nom,image) values(?,?)");
 			ps.setString(1,famille.getNom());
 			ps.setBlob(2, famille.getImage());
 			ps.executeUpdate();
 			}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 	}
 	
@@ -38,8 +38,9 @@ public class FamilleDAO {
 			ps=conn.prepareStatement("select * from famille");
 			
 			ResultSet rs = ps.executeQuery();
-		    while(true) {
+		    while(rs.next()) {
 		    	Famille f = new Famille();
+		    	//System.out.println(rs.getObject(0));
 		    	f.setIdfamille(rs.getInt("idfamille"));
 		    	f.setNom(rs.getString("nom"));
 		    	Blob blob = rs.getBlob("image");
@@ -56,6 +57,7 @@ public class FamilleDAO {
 				byte[] imageBytes = outputStream.toByteArray();
 				 
 				String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+				f.setBase64Image(base64Image);
 				lfamilles.add(f);
 			
 				inputStream.close();
@@ -63,7 +65,7 @@ public class FamilleDAO {
 			}
 		   
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 		return lfamilles;
 	}
@@ -91,13 +93,15 @@ public class FamilleDAO {
 		PreparedStatement ps;
 		try {
 			ps =conn.prepareStatement("update  famille set nom=?,image=?"
-										+ " where idproduit=?");
+										+ " where idfamille=?");
 			ps.setString(1,famille.getNom());
-			ps.setBlob(2, famille.getImage());
+			if(famille.getImage()!=null) {
+				ps.setBlob(2,famille.getImage());
+			}
 			ps.setInt(3, famille.getIdfamille());
 			ps.executeUpdate();
 		}catch(Exception e ) {	
-			
+			e.printStackTrace();
 		}
 	}
 	

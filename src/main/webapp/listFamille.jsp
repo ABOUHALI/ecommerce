@@ -46,46 +46,27 @@
                       <thead>
                         <tr>
                           <th> </th>
-                          <th> Destination </th>
-                          <th> Date de depart </th>
-                          <th> Date d'arrivée </th>
-                          <th> Prix </th>
-                          <th> Thèmes </th>
-                          <th> Activitées </th>
+                          <th> idFamille </th>
+                          <th> Nom</th>
+                          <th> Image</th>
+                          
                         </tr>
                       </thead>
                       
                       <tbody id="myMenu">
-                      <c:forEach items="${listVoyages}" var="voy">
+                      <c:forEach items="${familles}" var="famille">
                         <tr >
-                          <td>
-                          <img src="data:image/jpg;base64, ${voy.base64Image}" width="240" height="300"/>
+                          <td></td>
+                          <td> ${ famille.getIdfamille() } </td>
+                          <td>${ famille.getNom() }
                           </td>
-                          <td> ${ voy.getDestination() } </td>
-                          <td>${ voy.getDate_depart() }
+                         <td>
+                          <img src="data:image/jpg;base64, ${famille.base64Image}" width="240" height="300"/>
                           </td>
-                          <td>${ voy.getDate_arrivee() }
-                          </td>
-                          <td> ${ voy.getPrix() } $ </td>
-                          <td><c:forEach items="${voy.getThemes()}" var="theme">
-                          <ul>
-                          <li>
-                           ${ theme.getNom() } 
-                           </li>
-                           </ul>
-                          </c:forEach>
-                          </td>
-                          <td><c:forEach items="${voy.getActivites()}" var="act">
-                          <ul>
-                          <li>
-                           ${ act.getNom() } 
-                           </li>
-                           </ul>
-                          </c:forEach>
-                          </td>
-                          <td><a href="supprimerVoy?id_voy=${voy.getId() }" ><i
+                          
+                          <td><a href="supprimerFam?id_fam=${famille.getIdfamille()}" ><i
 								class="fa fa-trash-o" aria-hidden="true"></i>Supprimer</a></td>
-						  <td><a href="modifierVoy?id_voy=${voy.getId() }" ><i
+						  <td><a href="modifierFam?id_fam=${famille.idfamille}" ><i
 								class="fa fa-trash-o" aria-hidden="true"></i>Modifier</a></td>
                         </tr>
                         </c:forEach>
@@ -116,7 +97,8 @@ function myFunction() {
   li = ul.getElementsByTagName("tr");
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("td")[1];
+    a = li[i].getElementsByTagName("td")[2];
+    console.log(a);
     if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
       li[i].style.display = "";
     } else {
