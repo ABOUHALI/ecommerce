@@ -1,6 +1,5 @@
 package web;
 
-
 import java.io.IOException;
 
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
@@ -65,12 +64,12 @@ public class Login extends HttpServlet {
 				System.out.println(4);
 				session.setAttribute("user-admin", user);
 				System.out.println(session.getAttribute("user-admin"));
-				this.getServletContext().getRequestDispatcher("").forward(request, response);
+				this.getServletContext().getRequestDispatcher("homeAdmin.jsp").forward(request, response);
 
 			}else if (role.equals("client")){
 				session.setAttribute("user-admin", user);
 				System.out.println(session.getAttribute("user-client"));
-				this.getServletContext().getRequestDispatcher("").forward(request, response);
+				this.getServletContext().getRequestDispatcher("home.jsp").forward(request, response);
 			}
 			}
 		else {

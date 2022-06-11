@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class controller
  */
-@WebServlet("/controller")
+@WebServlet(name="cs",urlPatterns = {"/admin"})
 public class controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,7 +27,7 @@ public class controller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher("/home.jsp").forward(request, response);  
+		this.getServletContext().getRequestDispatcher("/homeAdmin.jsp").forward(request, response);  
 	}
 
 	/**
