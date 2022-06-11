@@ -55,13 +55,13 @@ public class Login extends HttpServlet {
 			String role = ld.Role(user);
 			if(role.equals("admin")) {
 				System.out.println(4);
-				session.setAttribute("user-admin", user);
-				System.out.println(session.getAttribute("user-admin"));
+				session.setAttribute("admin", user);
+				System.out.println(session.getAttribute("admin"));
 				this.getServletContext().getRequestDispatcher("homeAdmin.jsp").forward(request, response);
 
 			}else if (role.equals("client")){
-				session.setAttribute("user-admin", user);
-				System.out.println(session.getAttribute("user-client"));
+				session.setAttribute("client", user);
+				System.out.println(session.getAttribute("client"));
 				this.getServletContext().getRequestDispatcher("home.jsp").forward(request, response);
 			}
 			}
