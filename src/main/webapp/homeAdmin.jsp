@@ -37,7 +37,7 @@
         <jsp:include page="sideBarAdmin.jsp" />
         <!-- partial -->
         <div class="main-panel">
-        <div class="col-12 grid-margin">
+        <!--  <div class="col-12 grid-margin">
                 <div class="card">
                   <div class="card-body">
                     <h4 class="card-title">Ajout de voyage</h4>
@@ -172,7 +172,7 @@
                     </form>
                   </div>
                 </div>
-              </div>
+              </div>-->
               <footer class="footer">
             <div class="container-fluid clearfix">
              

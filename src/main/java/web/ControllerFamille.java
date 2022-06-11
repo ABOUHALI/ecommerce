@@ -96,21 +96,19 @@ public class ControllerFamille extends HttpServlet {
 			f.setIdfamille(id);
 			f.setNom(request.getParameter("nom"));
 			Part filePart = request.getPart("photo");
-
-			if (filePart != null) {
+			f.setImage(null);
+			if (filePart.getSize()!=0) {
 
 				System.out.println(filePart.getName());
 				System.out.println(filePart.getSize());
 				System.out.println(filePart.getContentType());
-
 				inputStream = filePart.getInputStream();
+				
 				f.setImage(inputStream);
-			}else {
-				f.setImage(null);
+				
 			}
-			System.out.println(f.toString());
 			fd.modifierFamille(f);
-			
+			this.getServletContext().getRequestDispatcher("/listeFamille").forward(request, response);
 		}
 	}
 

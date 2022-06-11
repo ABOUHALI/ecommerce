@@ -91,15 +91,22 @@ public class FamilleDAO {
 	public void modifierFamille(Famille famille) {
 		Connection conn = SingletonConnection.getConnection();
 		PreparedStatement ps;
+		String sqlimage="update  famille set nom=?,image=? where idfamille=?";
+		String sql ="update  famille set nom=? where idfamille=?";
 		try {
-			ps =conn.prepareStatement("update  famille set nom=?,image=?"
-										+ " where idfamille=?");
-			ps.setString(1,famille.getNom());
+			System.out.println(famille.getImage());
 			if(famille.getImage()!=null) {
-				ps.setBlob(2,famille.getImage());
-			}
+			ps =conn.prepareStatement(sqlimage);
+			ps.setString(1,famille.getNom());
+			ps.setBlob(2,famille.getImage());
 			ps.setInt(3, famille.getIdfamille());
 			ps.executeUpdate();
+			}else {
+				ps =conn.prepareStatement(sql);
+				ps.setString(1,famille.getNom());
+				ps.setInt(2, famille.getIdfamille());
+				ps.executeUpdate();
+			}
 		}catch(Exception e ) {	
 			e.printStackTrace();
 		}
