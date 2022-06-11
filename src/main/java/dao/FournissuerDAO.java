@@ -16,13 +16,14 @@ public class FournissuerDAO {
 		Connection conn = SingletonConnection.getConnection();
 		PreparedStatement ps;
 		try {
-			ps = conn.prepareStatement("insert into fournisseur values(?,?,?,?)");
+			ps = conn.prepareStatement("insert into fournisseur(nom,email,tel,prenom) values(?,?,?,?)");
 			ps.setString(1, f.getNom());
 			ps.setString(2, f.getEmail());
 			ps.setString(3, f.getTel());
-			ps.setString(5, f.getPrenom());
+			ps.setString(4, f.getPrenom());
+			ps.executeUpdate();
 		} catch (Exception e) {
-
+				e.printStackTrace();
 		}
 	}
 
@@ -33,13 +34,14 @@ public class FournissuerDAO {
 		try {
 			ps = conn.prepareStatement("select * from fournisseur");
 			ResultSet rs = ps.executeQuery();
-			while(true) {
+			while(rs.next()) {
 				Fournisseur f =new Fournisseur();
 				f.setIdfournisseur(rs.getInt("idfournisseur"));
 				f.setPrenom(rs.getString("prenom"));
 				f.setNom(rs.getString("nom"));
 				f.setTel(rs.getString("tel"));
-				f.setPrenom(rs.getString("prenom"));
+				f.setEmail(rs.getString("email"));
+			
 				lf.add(f);
 			}
 		} catch (Exception e) {

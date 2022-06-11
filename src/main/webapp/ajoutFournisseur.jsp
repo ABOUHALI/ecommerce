@@ -37,35 +37,52 @@
         <div class="main-panel">
         <div class="col-12 grid-margin">
                 <div class="card">
+                  <div class="col-12 grid-margin">
+                <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Ajout Famille de Produit</h4>
-                    <form class="form-sample" action="ajoutFamille" method="POST" enctype="multipart/form-data">
+                    <h4 class="card-title">Ajout de Fournisseur</h4>
+                    <form class="form-sample" action="ajoutFournisseur" method="POST">
                       <div class="row">
                         <div class="col-md-6">
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Label Famille</label>
+                            <label class="col-sm-3 col-form-label">Nom</label>
                             <div class="col-sm-9">
                               <input type="text" name="nom" class="form-control" />
                             </div>
                           </div>
-                          </div>
-                          </div>
-                      <div class="row">
-                        <div class="col-md-12">
+                        </div>
+                        <div class="col-md-6">
                           <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Image du voyage</label>
+                            <label class="col-sm-3 col-form-label">Prenom</label>
                             <div class="col-sm-9">
-                              <input type="file" id="avatar" name="image"
-												accept=".png, .jpg, .jpeg" placeholder="photo">
+                              <input type="text" name="prenom" class="form-control" />
                             </div>
                           </div>
                         </div>
                       </div>
-                        
-                       <button type="button" class="btn btn-primary btn-lg btn-block">S U B M I T </button>
-                    </form>
-                  </div>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Email</label>
+                            <div class="col-sm-9">
+                              <input type="email" type="date" name="email" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Tel</label>
+                            <div class="col-sm-9">
+                              <input class="form-control" type="text" name="tel" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary btn-lg btn-block">S U B M I T </button>
+                      </form>
                 </div>
+              </div>
+              </div>
               </div>
               <footer class="footer">
             <div class="container-fluid clearfix">

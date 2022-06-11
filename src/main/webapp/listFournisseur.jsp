@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -36,40 +37,54 @@
         <!-- partial -->
         <div class="main-panel">
         <div class="col-12 grid-margin">
+           <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">Ajout Famille de Produit</h4>
-                    <form class="form-sample" action="ajoutFamille" method="POST" enctype="multipart/form-data">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Label Famille</label>
-                            <div class="col-sm-9">
-                              <input type="text" name="nom" class="form-control" />
-                            </div>
-                          </div>
-                          </div>
-                          </div>
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="form-group row">
-                            <label class="col-sm-3 col-form-label">Image du voyage</label>
-                            <div class="col-sm-9">
-                              <input type="file" id="avatar" name="image"
-												accept=".png, .jpg, .jpeg" placeholder="photo">
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                        
-                       <button type="button" class="btn btn-primary btn-lg btn-block">S U B M I T </button>
-                    </form>
+                    <h4 class="card-title">List Fournisseur<br></h4>
+                    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th> </th>
+                          <th> Nom </th>
+                          <th> Prenom</th>
+                          <th>Email</th>
+                          <th>Tel</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody id="myMenu">
+                      <c:forEach items="${fournisseurs}" var="fourn">
+                        <tr >
+                          <td>
+                          	${ fourn.idfournisseur }
+                          </td>
+                          <td> ${ fourn.nom } </td>
+                          <td>${ fourn.prenom }
+                          </td>
+                          <td>
+                          <a href="mailto:${fourn.email}">${fourn.email}</a>
+							
+                          </td>
+                         <td>
+                          ${fourn.tel }
+                          </td>
+                          
+                          <td><a href="supprimerFourn?id_f=${fourn.idfournisseur}" ><i
+								class="fa fa-trash-o" aria-hidden="true"></i>Supprimer</a></td>
+						  <td><a href="modifierFourn?id_f=${fourn.idfournisseur}" ><i
+								class="fa fa-trash-o" aria-hidden="true"></i>Modifier</a></td>
+                        </tr>
+                        </c:forEach>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>
+              </div>
               <footer class="footer">
             <div class="container-fluid clearfix">
-             
+              
             </div>
           </footer>
               </div>
@@ -78,6 +93,26 @@
       <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
+    <script>
+function myFunction() {
+  // Declare variables
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("mySearch");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myMenu");
+  li = ul.getElementsByTagName("tr");
+  // Loop through all list items, and hide those who don't match the search query
+  for (i = 0; i < li.length; i++) {
+    a = li[i].getElementsByTagName("td")[2];
+    console.log(a);
+    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
     <!-- plugins:js -->
     <script src="assets/vendors/js/vendor.bundle.base.js"></script>
     <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
@@ -86,7 +121,7 @@
     <!-- End plugin js for this page-->
     <!-- inject:js -->
     <script src="assets/js/shared/off-canvas.js"></script>
-    
+ 
     <!-- endinject -->
     <!-- Custom js for this page-->
     <script src="assets/js/demo_1/dashboard.js"></script>
