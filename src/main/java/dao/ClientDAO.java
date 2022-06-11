@@ -12,15 +12,17 @@ import model.Users;
 public class ClientDAO {
 	
 	
-	public void addClient(Client c) {
+	public void addClient(Client c,int id_u) {
 		Connection conn = SingletonConnection.getConnection();
 		PreparedStatement ps;
 		try {
-			ps=conn.prepareStatement("insert into client values(?,?,?,?)");
+			System.out.println("in dao");
+			ps=conn.prepareStatement("insert into client (`nom`, `prenom`, `email`, `telephone`, `idusers`) values(?,?,?,?,?)");
 			ps.setString(1,c.getNom());
 			ps.setString(2, c.getPrenom());
 			ps.setString(3, c.getEmail());
 			ps.setString(4, c.getTelephone());
+			ps.setInt(5, id_u);
 			ps.executeUpdate();
 	}catch(Exception e) {
 			
@@ -51,18 +53,39 @@ public class ClientDAO {
 			}
 			return clients;
 		}
-		
+		public int getIdUser(Users u){
+			Connection conn =SingletonConnection.getConnection();
+			PreparedStatement ps;
+			int id=0;
+			try {
+				ps=conn.prepareStatement("select idusers from users where username=? and password=?");
+				ps.setString(1,u.getLogin());
+				System.out.println(";"+u.getLogin()+";");
+				ps.setString(2, u.getMdp());
+				System.out.println(";"+u.getMdp()+";");
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					id=rs.getInt("idusers");
+					System.out.println("id user is"+id);
+				}
+			}catch (Exception e) {
+				// TODO: handle exception
+			
+			}
+			return id;
+		}
 		public void addUser(Users user) {
 			Connection conn = SingletonConnection.getConnection();
 			PreparedStatement ps;
 			try {
-				ps=conn.prepareStatement("insert into users values(?,?,?)");
+				ps=conn.prepareStatement("insert into users (`username`, `password`, `role`) values(?,?,?)");
 				ps.setString(1, user.getLogin());
 				ps.setString(2, user.getMdp());
-				ps.setString(3, user.getRole());
+				ps.setString(3, "client");
 				ps.executeUpdate();
 			}catch (Exception e) {
 			// TODO: handle exception
-		}
+		e.printStackTrace();
+			}
 }
 }

@@ -62,7 +62,7 @@ public class Login extends HttpServlet {
 			}else if (role.equals("client")){
 				session.setAttribute("client", user);
 				System.out.println(session.getAttribute("client"));
-				this.getServletContext().getRequestDispatcher("home.jsp").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/homeClient.jsp").forward(request, response);
 			}
 			}
 		else {
