@@ -31,7 +31,8 @@ public class Login extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		System.out.println("GET");
-		doPost(request, response);
+		this.getServletContext().getRequestDispatcher("login.jsp").forward(request, response);
+
 
 	}
 
