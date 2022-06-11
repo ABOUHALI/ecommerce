@@ -57,7 +57,7 @@ public class Login extends HttpServlet {
 				System.out.println(4);
 				session.setAttribute("admin", user);
 				System.out.println(session.getAttribute("admin"));
-				this.getServletContext().getRequestDispatcher("homeAdmin.jsp").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
 
 			}else if (role.equals("client")){
 				session.setAttribute("client", user);
