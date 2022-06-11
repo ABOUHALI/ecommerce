@@ -18,19 +18,11 @@ import model.Users;
 /**
  * Servlet implementation class LoginSER
  */
-@WebServlet(name="cs",urlPatterns={"/Login"})
+@WebServlet(name="cs",urlPatterns={"/login"})
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	LoginDAO ld = new LoginDAO();
 	
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public Login() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
