@@ -80,14 +80,7 @@
             </div>
             <div class="container">
                <div class="row">
-                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo"> <a href="homeClient.jsp"><img src="images/logo.png" alt="#"></a> </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                      <div class="menu-area">
                         <div class="limit-box">
                            <nav class="main-menu">
@@ -116,7 +109,7 @@
       <!-- end header -->
       <section >
          <div class="banner-main">
-            <img src="images/Ecommerce.png" alt="#"/>
+            <img src="images/Ecommerce-customer-service-banner.png" alt="#"/>
             <div class="container">
                <div class="text-bg">
                   <h1>Commandez<br><strong class="white">quand vous voulez</strong></h1>
@@ -153,7 +146,7 @@
                         <input type="button" onclick="window.location.href = 'https://github.com/asmae1m/agence_voyage';" value="Notre projet"/>
                         </span></p>
                         <div class="palne-img-area">
-                           <img src="images/computer-removebg-preview.png" alt="images">
+                           <img src="images/elect-removebg-preview.png" alt="images">
                         </div>
                      </div>
                   </div>

@@ -5,6 +5,9 @@
 <!DOCTYPE html>
 <html lang="en">
    <head>
+   <% if(session.getAttribute("client")==null){ 
+        response.sendRedirect("login.jsp");} 
+   	 %>
       <!-- basic -->
       <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -84,23 +87,18 @@
             </div>
             <div class="container">
                <div class="row">
-                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo"> <a href="index.html"><img src="images/logo.png" alt="#"></a> </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                      <div class="menu-area">
                         <div class="limit-box">
                            <nav class="main-menu">
                              <ul class="menu-area-main">
-                             <li> <a href="monPanier?id_client=${client1.getId() }">Mon panier</a> </li>
+                                 <li> <a href="monPanier?id_client=${client1.getId() }">Mon panier</a> </li>
                                  <li><a href="reservations?id_client=${client1.getId() }">Mes reservations</a></li>
-                                
+                                 <li><a href="#travel">Activités</a></li>
+                                 <li><a href="#contact">Contact Us</a></li>
                                  <li><a href="afficherVoyages?id_client=${ client1.getId() }">Nos offres</a></li>
-                                 <li><a href="infosPersos.jsp">Vos informations</a></li>
+                                
+                                 <li><a href="modifierInfos.jsp">Vos informations</a></li>
                                  
                                  <li><a href="logout">log out</a></li>
                                
@@ -118,110 +116,27 @@
       <!-- end header -->
       <section >
          <div class="banner-main">
-            <img src="images/banner.jpg" alt="#"/>
+            <img src="images/Ecommerce-customer-service-banner.png" alt="#"/>
             <div class="container">
                <div class="text-bg">
-                  <h1>Voyagez<br><strong class="white">où vous voulez</strong></h1>
+                  <h1>Commandez<br><strong class="white">quand vous voulez</strong></h1>
                  &nbsp;
                  &nbsp;
                  &nbsp;
-                  <div class="container">
-                     <form action="filterSearch?id_client=${client1.getId() }" method="POST" class="main-form">
-                        <h3>Find Your Tour</h3>
-                        <div class="row">
-                           <div class="col-md-9">
-                              <div class="row">
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Thème</label>
-                                    
-                                    <select class="form-control" name="theme" >
-                                    <option>---</option>
-                                    <option> Haute-montagne</option>
-                                    <option> Croisières</option>
-                                    <option> Terres polaires</option>
-                                    <option> Aventures</option>
-                                    <option> Voyage neige</option>
-                                    <option> Chemins de St-Jaques</option>
-                                    </select>
-                                   
-                                 </div>
-                                
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Activités</label>
-                                    <select class="form-control" name="activite">
-                                    <option>---</option>
-                                    <option> Randonnée</option>
-                                    <option> Trek </option>
-                                    <option> Safari</option>
-                                    <option> Observation animaux</option>
-                                    <option> Raquette</option>
-                                    <option> Ski de fond / ski nordique</option>
-                                    <option> Ski de randonnée / Freeride</option>
-                                    <option> Traineau à chiens</option>
-                                    <option> Alpinisme</option>
-                                    <option> Velo</option>
-                                    <option> Kayak et canoe </option>
-                                    <option> Decouverte</option>
-                                    </select>
-                                 </div>
-                                 
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Destination</label>
-                                    <select class="form-control" name="destination" >
-                                    <option>---</option>
-                                    <option> meknes</option>
-                                    <option> khenifra</option>
-                                    <option> rabat</option>
-                                    <option> marrakech</option>
-                                    <option>eljadida</option>
-                                    <option>ouarzazate</option>
-                                    <option>fes</option>
-                                    
-                                    </select>
-                                 </div>
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Durée </label>
-                                    <input value="---"class="form-control" placeholder="jours" type="text" name="duree" >
-                                 </div>
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Type de voyage</label>
-                                    <select class="form-control" name="type" required="required">
-                                       <option>---</option>
-                                       <option>Circuit accompagne</option>
-                                       <option>Voyage en individuel</option>
-                                    </select>
-                                 
-                              </div>
-                               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Votre Budget </label>
-                                    <input value="0"class="form-control" placeholder="jours" type="text" name="budget" >
-                                 </div>
-                           </div>
-                           
-                             <input type="submit" value="Rechercher">
-                           </div>
-                        </div>
-                     </form>
-                  </div>
+                  
                </div>
             </div>
          </div>
       </section>
       <!-- about -->
+      
+      <!-- about -->
       <div id="blog" class="blog">
          <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2>Nos voyages</h2>
-                     <span>CI-dessous nos voyages, si vous chercher un voyage spécifique utilisez les filtres de recherche!</span> 
-                     <span style="color: red;"><c:out value="${zero }"/></span>
-                  </div>
-               </div>
-            </div>
+            
             <div class="row">
             <c:forEach items="${produits}" var="produit">
-               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                   <div class="blog-box">
                      <figure><img src="data:image/jpg;base64, ${produit.base64Image}" alt="#"/>
                      <span>${ produit.nom}</span>
@@ -241,9 +156,6 @@
                               </button>
                               </form>-->
                               
-                              <button onclick="window.location.href = 'consulterVoyage?id=${ produit.getId_produit() }';" type="submit" class="btn btn-success btn-sm">
-                                <i class="fa fa-anchor"> </i> Consult
-                              </button>
                               <button onclick="window.location.href = 'ajoutPanier?id_client=&idVoy=';" type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-user"> </i> Ajouter au panier
                               </button>
