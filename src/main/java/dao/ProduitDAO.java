@@ -117,21 +117,18 @@ public class ProduitDAO {
 		return produits;
 	}	
 	
-	public static boolean deleteProduit(Produit produit) {
-		boolean b = false;
+	public void deleteProduit(int idproduit) {
 		Connection conn = SingletonConnection.getConnection();
 		PreparedStatement ps;
 		try {
 		String sql = "delete from produit where idproduit=?";
 		ps =conn.prepareStatement(sql);
-		ps.setInt(1, produit.getId_produit());
+		ps.setInt(1, idproduit);
 		ps.executeUpdate();
-		b = true;
 
 		} catch (Exception e) {
 			System.err.println("problem in deleting ...");
 		}
-		return b;
 		} 
 	
 	
@@ -139,16 +136,30 @@ public class ProduitDAO {
 		Connection conn = SingletonConnection.getConnection();
 		PreparedStatement ps;
 		try {
-			ps =conn.prepareStatement("update  produit set nom=?,idfamille=?,description=?,image=?,quantite=?,idfournisseur=?"
-										+ " where idproduit=?");
-			ps.setString(1,produit.getNom());
-			ps.setString(3, produit.getDescription());
-			ps.setInt(2, produit.getIdfamille());
-			ps.setBlob(4, produit.getImage());
-			ps.setInt(5, produit.getQtte());
-			ps.setInt(6, produit.getIdfournisseur());
-			ps.setInt(7, produit.getId_produit());
-			ps.executeUpdate();
+			if(produit.getImage()!=null) {
+				ps =conn.prepareStatement("update  produit set nom=?,idfamille=?,description=?,image=?,quantite=?,idfournisseur=?"
+											+ " where idproduit=?");
+				ps.setString(1,produit.getNom());
+				ps.setString(3, produit.getDescription());
+				ps.setInt(2, produit.getIdfamille());
+				ps.setBlob(4, produit.getImage());
+				
+				ps.setInt(5, produit.getQtte());
+				ps.setInt(6, produit.getIdfournisseur());
+				ps.setInt(7, produit.getId_produit());
+				ps.executeUpdate();
+			}else {
+				ps =conn.prepareStatement("update  produit set nom=?,idfamille=?,description=?,quantite=?,idfournisseur=?"
+						+ " where idproduit=?");
+				ps.setString(1,produit.getNom());
+				ps.setString(3, produit.getDescription());
+				ps.setInt(2, produit.getIdfamille());
+				ps.setInt(4, produit.getQtte());
+				ps.setInt(5, produit.getIdfournisseur());
+				ps.setInt(6, produit.getId_produit());
+				ps.executeUpdate();
+			}
+			
 		}catch(Exception e ) {	
 			
 		}

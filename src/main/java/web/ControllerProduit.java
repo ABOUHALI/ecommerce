@@ -25,7 +25,7 @@ import model.Produit;
 /**
  * Servlet implementation class ControllerFamille
  */
-@WebServlet(name="Produit",urlPatterns = {"/listeProduit","/ajoutProduit","/ajoutProduitListe","/modifierProd","/modifierProduit"})
+@WebServlet(name="Produit",urlPatterns = {"/listeProduit","/supprimerProduit","/ajoutProduit","/ajoutProduitListe","/modifierProd","/modifierProduit"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024, maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
 
 public class ControllerProduit extends HttpServlet {
@@ -59,7 +59,7 @@ public class ControllerProduit extends HttpServlet {
 		if(path.equals("/ajoutProduit")) {
 			String nom = request.getParameter("nom");
 			String nomFour=request.getParameter("nomFour");
-			int prix=Integer.parseInt(request.getParameter("prix")) ;
+			Double prix=Double.parseDouble(request.getParameter("prix")) ;
 			int qte=Integer.parseInt(request.getParameter("qte")) ;
 			String famille=request.getParameter("famille");
 			String description=request.getParameter("description");
@@ -104,27 +104,42 @@ public class ControllerProduit extends HttpServlet {
 
 		}
 		else if(path.equals("/modifierProd")) {
-			Integer id= Integer.parseInt(request.getParameter("id_fam"));
-			
-			List<Produit> lf =pd.listerProduit();
+			Integer id= Integer.parseInt(request.getParameter("id_prod"));
+			List<Fournisseur> lf = new ArrayList<Fournisseur>();
+			lf=fd.ListFournisseur();
+			request.setAttribute("fournisseur", lf);
+			List<Famille> lfa = new ArrayList<Famille>();
+			lfa=fad.listerFamilles();
+			request.setAttribute("familles", lfa);
+			List<Produit> lp =pd.listerProduit();
 			Produit f =null;
-			for (Produit famille : lf) {
-				if(famille.getIdfamille()==id) {
-					f=famille;
+			for (Produit prod : lp) {
+				if(prod.getId_produit()==id) {
+					f=prod;
 				}
 			}
-			request.setAttribute("famille", f);
+			request.setAttribute("produit", f);
 			request.setAttribute("id", id);
-			this.getServletContext().getRequestDispatcher("/modifierFam.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/modifierProduit.jsp").forward(request, response);
 
 			
 			
 		}else if(path.equals("/modifierProduit")) {
-			Integer id= Integer.parseInt(request.getParameter("id_fam"));
-			Produit f =new Produit();
-			f.setIdfamille(id);
-			f.setNom(request.getParameter("nom"));
-			Part filePart = request.getPart("photo");
+			Integer id= Integer.parseInt(request.getParameter("id_prod"));
+			String nom = request.getParameter("nom");
+			String nomFour=request.getParameter("nomFour");
+			double prix=Double.parseDouble(request.getParameter("prix")) ;
+			int qte=Integer.parseInt(request.getParameter("qte")) ;
+			String famille=request.getParameter("famille");
+			String description=request.getParameter("description");
+			
+			Produit f = new Produit();
+			f.setId_produit(id);
+			f.setNom(nom);
+			f.setDescription(description);
+			f.setPrix(prix);
+			f.setQtte(qte);
+			Part filePart = request.getPart("image");
 			f.setImage(null);
 			if (filePart.getSize()!=0) {
 
@@ -136,8 +151,16 @@ public class ControllerProduit extends HttpServlet {
 				f.setImage(inputStream);
 				
 			}
+			//f.setImage(inputStream);
+			f.setIdfamille(pd.getIdFammile(famille));
+			f.setIdfournisseur(pd.getIdFour(nomFour));
 			pd.modifierProduit(f);
-			this.getServletContext().getRequestDispatcher("/listeFamille").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/listeProduit").forward(request, response);
+		}else if(path.equals("/supprimerProduit")) {
+			Integer id= Integer.parseInt(request.getParameter("id_prod"));
+			pd.deleteProduit(id);
+			this.getServletContext().getRequestDispatcher("/listeProduit").forward(request, response);
+
 		}
 	}
 

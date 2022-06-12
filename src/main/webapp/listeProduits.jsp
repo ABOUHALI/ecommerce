@@ -68,9 +68,9 @@
                           ${ prod.getQtte() }
                           </td>
                           
-                          <td><a href="supprimerFam?id_fam=${prod.getIdfamille()}" ><i
+                          <td><a href="supprimerProduit?id_prod=${prod.getId_produit()}" ><i
 								class="fa fa-trash-o" aria-hidden="true"></i>Supprimer</a></td>
-						  <td><a href="modifierFam?id_fam=${prod.getIdfamille()}" ><i
+						  <td><a href="modifierProd?id_prod=${prod.getId_produit()}" ><i
 								class="fa fa-trash-o" aria-hidden="true"></i>Modifier</a></td>
                         </tr>
                         </c:forEach>
