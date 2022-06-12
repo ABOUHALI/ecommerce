@@ -4,6 +4,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<% if(session.getAttribute("admin")==null){ 
+        response.sendRedirect("login.jsp");} 
+   	 %>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"

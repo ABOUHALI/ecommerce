@@ -180,10 +180,6 @@
                                     </select>
                                  </div>
                                  <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Date de départ </label>
-                                    <input value="date" class="form-control"  min="<%= new java.sql.Date(System.currentTimeMillis()) %>" type="date" name="date_depart" >
-                                 </div>
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
                                     <label >Durée </label>
                                     <input value="---"class="form-control" placeholder="jours" type="text" name="duree" >
                                  </div>
@@ -233,15 +229,12 @@
                      <div class="travel">
                         <span>Famille :  ${ produit.nomFamille }</span> 
                         <p><strong class="Comment"> ${ produit.getPrix() } DHS</strong>  Prix</p>
-                        <h3>${ produit.getQtte() } </h3>
-                              <ul class="list-unstyled">
-                                <p>${ produit.getDescription() } </p>
+                        <h3>${ produit.getDescription() } </h3>
+                        <p> Quantitée : ${ produit.getQtte() }</p>
                               
-                                
-                              </ul>
                               <div class=" bottom text-center">
                            
-                            <div class=" col-sm-7 emphasis">
+                           <div class=" col-sm-7 emphasis">
                            <!-- <form action="consulterVoyage?id=${produit.getId_produit()}" method="POST"> 
                                <button  type="submit" class="btn btn-success btn-sm">
                                 <i class="fa fa-user"> </i>Consulter

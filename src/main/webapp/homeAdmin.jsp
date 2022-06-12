@@ -24,9 +24,9 @@
     <!-- End Layout styles -->
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
   </head>
-  <%--  <% if(session.getAttribute("admin")==null){ 
+   <% if(session.getAttribute("admin")==null){ 
         response.sendRedirect("login.jsp");} 
-   	 %>--%>
+   	 %>
   <body>
     <div class="container-scroller">
       <!-- partial:partials/_navbar.html -->

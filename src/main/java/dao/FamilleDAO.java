@@ -117,7 +117,7 @@ public class FamilleDAO {
 		Connection conn = SingletonConnection.getConnection();
 		PreparedStatement ps;
 		try {
-			ps=conn.prepareStatement("select p.* ,f.nom from produit p ,famille f where p.idfamille=?");
+			ps=conn.prepareStatement("select p.* ,f.nom from produit p ,famille f where p.idfamille=? and p.idfamille=f.idfamille;");
 			ps.setInt(1, id_famille);
 			ResultSet rs =ps.executeQuery();
 			while(rs.next()) {
@@ -127,8 +127,23 @@ public class FamilleDAO {
 				p.setPrix(rs.getDouble("prix"));
 				p.setDescription(rs.getString("description"));
 				p.setQtte(rs.getInt("quantite"));
-				p.setNomFamille(rs.getString("nom"));
+				p.setNomFamille(rs.getString("f.nom"));
 				p.setIdfournisseur(id_famille);
+				Blob blob = rs.getBlob("image");
+				 
+				InputStream inputStream = blob.getBinaryStream();
+				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+				byte[] buffer = new byte[4096];
+				int bytesRead = -1;
+				 
+				while ((bytesRead = inputStream.read(buffer)) != -1) {
+				    outputStream.write(buffer, 0, bytesRead);
+				}
+				 
+				byte[] imageBytes = outputStream.toByteArray();
+				 
+				String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+				p.setBase64Image(base64Image);
 				lp.add(p);
 			}
 		}catch(Exception e) {
