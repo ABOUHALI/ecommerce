@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    
 <!DOCTYPE html>
 <html lang="en">
    <head>
@@ -10,7 +12,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Notre Agence</title>
+      <title>Notre A9ESBI</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -114,87 +116,11 @@
             <img src="images/banner.jpg" alt="#"/>
             <div class="container">
                <div class="text-bg">
-                  <h1>Voyagez<br><strong class="white">où vous voulez</strong></h1>
+                  <h1>Commandez<br><strong class="white">quand vous voulez</strong></h1>
                  &nbsp;
                  &nbsp;
                  &nbsp;
-                  <div class="container">
-                     <form action="filterSearch?id_client=${client1.getId() }" method="POST" class="main-form">
-                        <h3>Find Your Tour</h3>
-                        <div class="row">
-                           <div class="col-md-12">
-                              <div class="row">
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Thème</label>
-                                    
-                                    <select class="form-control" name="theme" >
-                                    <option>---</option>
-                                    <option> Haute-montagne</option>
-                                    <option> Croisières</option>
-                                    <option> Terres polaires</option>
-                                    <option> Aventures</option>
-                                    <option> Voyage neige</option>
-                                    <option> Chemins de St-Jaques</option>
-                                    </select>
-                                   
-                                 </div>
-                                
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Activités</label>
-                                    <select class="form-control" name="activite">
-                                    <option>---</option>
-                                    <option> Randonnée</option>
-                                    <option> Trek </option>
-                                    <option> Safari</option>
-                                    <option> Observation animaux</option>
-                                    <option> Raquette</option>
-                                    <option> Ski de fond / ski nordique</option>
-                                    <option> Ski de randonnée / Freeride</option>
-                                    <option> Traineau à chiens</option>
-                                    <option> Alpinisme</option>
-                                    <option> Velo</option>
-                                    <option> Kayak et canoe </option>
-                                    <option> Decouverte</option>
-                                    </select>
-                                 </div>
-                                 
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Destination</label>
-                                    <select class="form-control" name="destination" >
-                                    <option>---</option>
-                                    <option> meknes</option>
-                                    <option> khenifra</option>
-                                    <option> rabat</option>
-                                    <option> marrakech</option>
-                                    <option>eljadida</option>
-                                    <option>ouarzazate</option>
-                                    <option>fes</option>
-                                    
-                                    </select>
-                                 </div>
-                                 
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Durée </label>
-                                    <input value="---"class="form-control" placeholder="jours" type="text" name="duree" >
-                                 </div>
-                                 <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6 col-12">
-                                    <label >Type de voyage</label>
-                                    <select class="form-control" name="type" required="required">
-                                       <option>---</option>
-                                       <option>Circuit accompagné</option>
-                                       <option>Voyage en individuel</option>
-                                    </select>
-                                 
-                              </div>
-                             
-                           </div>
-                           
-                              <input type="submit" value="Rechercher">
-                           </div>
-                           
-                        </div>
-                     </form>
-                  </div>
+                  
                </div>
             </div>
          </div>
@@ -216,11 +142,9 @@
                <div class="row">
                   <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                      <div class="about-box">
-                        <p> <span>On est des étudiants en 3éme année génie informatique, <br>
-                        on a essayé de developper un site d'une agence de voyage
-                        <br> 
-                        ceci est notre 3éme projet en utilisant la technique de JEE <br>
-                        Tout notre code source du projet est disponible sur ci dessous :)  <br>
+                        <p> <span>Ecommerce has helped businesses (especially those with a narrow reach like small businesses) gain access to and establish a wider 
+                        market presence by providing cheaper and more efficient distribution channels for their products or services. Target (TGT) supplemented its brick-and-mortar 
+                        presence with an online store that allows customers to purchase everything from clothes and coffeemakers to toothpaste and action figures right from their homes.  <br>
                         <br>
                         <input type="button" onclick="window.location.href = 'https://github.com/asmae1m/agence_voyage';" value="Notre projet"/>
                         </span></p>
@@ -244,100 +168,23 @@
                </div>
             </div>
             <div class="row">
+               <c:forEach items="${familles}" var="famille">
                <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                   <div class="traveling-box">
-                     <i><img src="icon/travel-icon.png" alt="icon"/></i>
-                     <h3>Randonnée et Trek</h3>
+                     <i><img src="data:image/jpg;base64, ${famille.base64Image}" width="540" height="400" alt="icon"/></i>
+                     <h3>${famille.getNom()}</h3>
                      
                      <div class="template-demo">
                       <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
-                          
-                          <a class="dropdown-item" href="#">Randonnée</a>
-                          <a class="dropdown-item" href="#">Trek</a>
-                          
-                        </div>
+                        <a type="submit" class="btn btn-outline-primary dropdown-toggle" type="submit" id="dropdownMenuOutlineButton1" 
+                         aria-haspopup="true" href="prodByFam?id_fam=${famille.getIdfamille()}" aria-expanded="false"> Voir produits </a>
+               			        
                       </div>
                   </div>
                   </div>
                </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="traveling-box">
-                     <i><img src="icon/travel-icon2.png" alt="icon"/></i>
-                     <h3>Découverte d'animaux</h3>
-                     
-                     <div class="template-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus  </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
-                          
-                          <a class="dropdown-item" href="#">Safari</a>
-                          <a class="dropdown-item" href="#">Observations animaux</a>
-                          
-                        </div>
-                      </div>
-                  </div>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="traveling-box">
-                     <i><img src="icon/travel-icon3.png" alt="icon"/></i>
-                     <h3>Activités neige</h3>
-                   
-                     <div class="template-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
-                          
-                          <a class="dropdown-item" href="#">Ski de fond / ski nordique</a>
-                          <a class="dropdown-item" href="#">Ski de randonnée / Freeride</a>
-                          <a class="dropdown-item" href="#">Traineau à chiens</a>
-                          
-                        </div>
-                      </div>
-                  </div>
-                  </div>
-               </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="traveling-box">
-                     <i><img src="icon/travel-icon2.png" alt="icon"/></i>
-                     <h3>Activités de montagne</h3>
-                   
-                     <div class="template-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
-                         
-                          <a class="dropdown-item" href="#">Alpinisme</a>
-                          
-                        </div>
-                      </div>
-                  </div>
-                  </div>
-               </div>
-             <div class="col-4 grid-margin stretch-card">
-                   
-                  </div>
-               <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
-                  <div class="traveling-box">
-                     <i><img src="icon/travel-icon.png" alt="icon"/></i>
-                     <h3>Autres activités</h3>
-                    
-                     <div class="template-demo">
-                      <div class="dropdown">
-                        <button class="btn btn-outline-primary dropdown-toggle" type="button" id="dropdownMenuOutlineButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Voir plus </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuOutlineButton1">
-
-                          <a class="dropdown-item" href="#">Vélo</a>
-                          <a class="dropdown-item" href="#">Kayak et canoe</a>
-                          <a class="dropdown-item" href="#">Découverte</a>
-                         
-                        </div>
-                      </div>
-                  </div>
-                  </div>
-               </div>
+               </c:forEach>
+              </div>
                <br>
                
                <br>

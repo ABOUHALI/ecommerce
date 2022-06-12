@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ page import  ="model.Users" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,9 +54,9 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
    <!-- body -->
-    <% if(session.getAttribute("client")==null){ 
+    <%-- <% if(session.getAttribute("client")==null){ 
         response.sendRedirect("login.jsp");} 
-   	 %>
+   	 --%>
    <body class="main-layout">
       <!-- loader  -->
       <div class="loader_bg">
@@ -223,36 +224,34 @@
                </div>
             </div>
             <div class="row">
-            <c:forEach items="${list}" var="voyage">
+            <c:forEach items="${produits}" var="produit">
                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
                   <div class="blog-box">
-                     <figure><img src="data:image/jpg;base64, ${voyage.base64Image}" alt="#"/>
-                     <span>${ voyage.getDate_depart() }</span>
+                     <figure><img src="data:image/jpg;base64, ${produit.base64Image}" alt="#"/>
+                     <span>${ produit.nom}</span>
                      </figure>
                      <div class="travel">
-                        <span>Destination :  ${ voyage.getDestination() }</span> 
-                        <p><strong class="Comment"> ${ voyage.getPrix() } DHS</strong>  Prix</p>
-                        <h3>${ voyage.getDestination() } Amazing Tour</h3>
+                        <span>Famille :  ${ produit.nomFamille }</span> 
+                        <p><strong class="Comment"> ${ produit.getPrix() } DHS</strong>  Prix</p>
+                        <h3>${ produit.getQtte() } </h3>
                               <ul class="list-unstyled">
-                                <li><i class="fa fa-car"></i><strong> Date d'arrivée: </strong>${ voyage.getDate_arrivee() } </li>
-                                <li><i class="fa fa-phone"></i> <strong>Durée du voyage : </strong>${ voyage.getDuree() } jours</li>
-                                <li><i class="fa fa-map-marker"></i> <strong> Endroit de départ : </strong>${ voyage.getEndroit_depart() }</li>
-                                <li><i class="fa fa-sun-o"></i> <strong> Type de voyage : </strong> ${ voyage.getType_voyage() }</li>
+                                <p>${ produit.getDescription() } </p>
+                              
                                 
                               </ul>
                               <div class=" bottom text-center">
                            
                             <div class=" col-sm-7 emphasis">
-                           <!-- <form action="consulterVoyage?id=${voyage.getId()}" method="POST"> 
+                           <!-- <form action="consulterVoyage?id=${produit.getId_produit()}" method="POST"> 
                                <button  type="submit" class="btn btn-success btn-sm">
                                 <i class="fa fa-user"> </i>Consulter
                               </button>
                               </form>-->
                               
-                              <button onclick="window.location.href = 'consulterVoyage?id=${ voyage.getId() }';" type="submit" class="btn btn-success btn-sm">
+                              <button onclick="window.location.href = 'consulterVoyage?id=${ produit.getId_produit() }';" type="submit" class="btn btn-success btn-sm">
                                 <i class="fa fa-anchor"> </i> Consult
                               </button>
-                              <button onclick="window.location.href = 'ajoutPanier?id_client=${client1.getId() }&idVoy=${ voyage.getId() }';" type="submit" class="btn btn-primary btn-sm">
+                              <button onclick="window.location.href = 'ajoutPanier?id_client=&idVoy=';" type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-user"> </i> Ajouter au panier
                               </button>
                              
