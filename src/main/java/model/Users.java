@@ -29,5 +29,9 @@ public class Users {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	@Overridessss
+	public String toString() {
+		return "Users [id=" + id + ", login=" + login + ", mdp=" + mdp + ", role=" + role + "]";
+	}
 	
 }	

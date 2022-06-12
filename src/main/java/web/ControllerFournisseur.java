@@ -11,12 +11,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.FournissuerDAO;
+import model.Famille;
 import model.Fournisseur;
 
 /**
  * Servlet implementation class ControllerFournisseur
  */
-@WebServlet(name="fournisseur",urlPatterns = {"/listeFournisseur","/ajoutFournisseur"})
+@WebServlet(name="fournisseur",urlPatterns = {"/listeFournisseur","/ajoutFournisseur","/modifierFourn","/modifierFournisseur"})
 public class ControllerFournisseur extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	FournissuerDAO fd =new FournissuerDAO();
@@ -58,8 +59,38 @@ doPost(request, response);	}
 			f.setTel(tel);
 			fd.addFournisseur(f);
 			this.getServletContext().getRequestDispatcher("/listeFournisseur").forward(request, response);
+		}else if(path.equals("/modifierFourn")) {
+			Integer id = Integer.parseInt(request.getParameter("id_f"));
+			List<Fournisseur> lf =fd.ListFournisseur();
+			Fournisseur f =null;
+			for (Fournisseur fournisseur : lf) {
+				if(fournisseur.getIdfournisseur()==id) {
+					f=fournisseur;
+				}
+			}
+			request.setAttribute("fournisseur", f);
+			request.setAttribute("id", id);
+			this.getServletContext().getRequestDispatcher("/modifierFourn.jsp").forward(request, response);
 
-			
+		}else if(path.equals("/modifierFournisseur")) {
+			Integer id = Integer.parseInt(request.getParameter("id_fourn"));
+			String nom =request.getParameter("nom");
+			String prenom =request.getParameter("prenom");
+			String tel = request.getParameter("tel");
+			String email =request.getParameter("email");
+			Fournisseur f = new Fournisseur();
+			f.setEmail(email);
+			f.setNom(prenom);
+			f.setIdfournisseur(id);
+			f.setTel(tel);
+			f.setPrenom(prenom);
+			fd.modifierFournisseu(f);
+			this.getServletContext().getRequestDispatcher("/listeFournisseur").forward(request, response);
+
+					
+					
+					
+					
 		}
 		
 		}

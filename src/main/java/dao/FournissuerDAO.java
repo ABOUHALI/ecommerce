@@ -54,7 +54,7 @@ public class FournissuerDAO {
 			Connection conn = SingletonConnection.getConnection();
 			PreparedStatement ps;
 			try {
-				ps =conn.prepareStatement("update  fournissuer set nom=?,email=?,tel=?,prenom=?"
+				ps =conn.prepareStatement("update  fournisseur set nom=?,email=?,tel=?,prenom=?"
 											+ " where idfournisseur=?");
 				ps.setString(1, f.getNom());
 				ps.setString(2, f.getEmail());

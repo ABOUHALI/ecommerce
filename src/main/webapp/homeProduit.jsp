@@ -251,7 +251,7 @@
                               <button onclick="window.location.href = 'consulterVoyage?id=${ produit.getId_produit() }';" type="submit" class="btn btn-success btn-sm">
                                 <i class="fa fa-anchor"> </i> Consult
                               </button>
-                              <button onclick="window.location.href = 'ajoutPanier?id_client=&idVoy=';" type="submit" class="btn btn-primary btn-sm">
+                              <button onclick="window.location.href = 'ajoutPanier?idclient=&idproduit=';" type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-user"> </i> Ajouter au panier
                               </button>
                              

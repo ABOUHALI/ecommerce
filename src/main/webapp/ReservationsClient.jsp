@@ -70,7 +70,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Mes reservations</h3>
+                <h3>Mes Produits</h3>
               </div>
 
             </div>
@@ -87,29 +87,27 @@
                       <thead>
                         <tr>
                           <th> </th>
-                          <th> Destination </th>
-                          <th> Date de depart </th>
-                          <th> Date d'arrivée </th>
-                          <th> Prix </th>
-                          <th> Etat </th>
+                          <th> Produit </th>
+                          <th> prixT </th>
+                          <th> Quantite </th>
+                          <th>  Description</th>
                         </tr>
                       </thead>
                       
                       <tbody id="myMenu">
-                       <span style="color:red; text-align:center;"><c:out value="${zero }"></c:out></span>
-                      <c:forEach items="${voy}" var="voy">
+                      <c:forEach items="${paniers}" var="p">
                         <tr >
                           <td>
-                          <img src="data:image/jpg;base64, ${voy.base64Image}" width="30" height="35" style="border-radius: 50%;"/>
+                          <img src="data:image/jpg;base64, ${p.photo}" width="30" height="35" style="border-radius: 50%;"/>
                           </td>
-                          <td> ${ voy.getDestination() } </td>
-                          <td>${ voy.getDate_depart() }
+                          <td> ${ p.produit} </td>
+                          <td>${ p.prixT }
                           </td>
-                          <td>${ voy.getDate_arrivee() }
+                          <td>${ p.qtte }
                           </td>
-                          <td> ${ voy.getPrix() } $ </td>
+                          <td> ${ p.description } MAD </td>
                           
-                          <td><a href="supprimerRes?id_voy=${voy.getId() }&id_client=${client1.getId()}" ><i
+                          <td><a href="supprimerPanier?id_panier=${p.idpanier}" ><i
 								class="fa fa-trash-o" aria-hidden="true"></i>Supprimer</a></td>
                         </tr>
                         </c:forEach>
