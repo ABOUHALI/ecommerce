@@ -112,6 +112,31 @@ public class FamilleDAO {
 		}
 	}
 	
+	public List<Produit> getProduitFromFamille(int id_famille){
+		List<Produit> lp = new ArrayList<Produit>();
+		Connection conn = SingletonConnection.getConnection();
+		PreparedStatement ps;
+		try {
+			ps=conn.prepareStatement("select p.* ,f.nom from produit p ,famille f where p.idfamille=?");
+			ps.setInt(1, id_famille);
+			ResultSet rs =ps.executeQuery();
+			while(rs.next()) {
+				Produit p = new Produit();
+				p.setId_produit(rs.getInt("idproduit"));
+				p.setNom(rs.getString("nom"));
+				p.setPrix(rs.getDouble("prix"));
+				p.setDescription(rs.getString("description"));
+				p.setQtte(rs.getInt("quantite"));
+				p.setNomFamille(rs.getString("nom"));
+				p.setIdfournisseur(id_famille);
+				lp.add(p);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return lp;
+	}
+	
 
 
 }

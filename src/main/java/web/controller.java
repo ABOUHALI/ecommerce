@@ -1,6 +1,9 @@
 package web;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,16 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ClientDAO;
+import dao.FamilleDAO;
 import model.Client;
+import model.Famille;
+import model.Produit;
 import model.Users;
 
 /**
  * Servlet implementation class controller
  */
-@WebServlet(name="s",urlPatterns = {"/admin","/register"})
+@WebServlet(name="s",urlPatterns = {"/homeClient","/register","/prodByFam"})
 public class controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ClientDAO cd=new ClientDAO();   
+    FamilleDAO fd = new FamilleDAO();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -55,6 +62,20 @@ public class controller extends HttpServlet {
 			cl.setEmail(request.getParameter("email"));
 			cd.addClient(cl,cd.getIdUser(us));
 			this.getServletContext().getRequestDispatcher("/login.jsp").forward(request, response);
+		}else if(path.equals("/homeClient")) {
+				List<Famille> lf =new ArrayList<Famille>();
+				lf=fd.listerFamilles();
+				request.setAttribute("familles", lf);
+			this.getServletContext().getRequestDispatcher("/homeClient.jsp").forward(request, response);
+
+		}else if(path.equals("/prodByFam")) {
+			String idf =request.getParameter("id_fam");
+			Integer id = Integer.parseInt(idf);
+			List<Produit> lp = fd.getProduitFromFamille(id);
+			System.out.println(lp);
+			request.setAttribute("produits", lp);
+			this.getServletContext().getRequestDispatcher("/homeProduit.jsp").forward(request, response);
+
 		}
 	}
 

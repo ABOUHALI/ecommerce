@@ -13,7 +13,15 @@ public class Produit {
 	private InputStream image;
 	private int qtte;
 	
+	////////////////////////////
+	private String nomFamille;
 	
+	public String getNomFamille() {
+		return nomFamille;
+	}
+	public void setNomFamille(String nomFamille) {
+		this.nomFamille = nomFamille;
+	}
 	private String base64Image;
 	
 	public String getDescription() {
