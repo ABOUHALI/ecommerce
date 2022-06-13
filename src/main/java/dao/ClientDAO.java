@@ -75,6 +75,30 @@ public class ClientDAO {
 			}
 			return id;
 		}
+		
+		
+		public int getIdClient(int idusers){
+			Connection conn =SingletonConnection.getConnection();
+			PreparedStatement ps;
+			int id=0;
+			try {
+				ps=conn.prepareStatement("select idclient from client where idusers=?");
+				ps.setInt(1,idusers);
+				//System.out.println(";"+u.getLogin()+";");
+				//ps.setString(2, u.getMdp());
+				//System.out.println(";"+u.getMdp()+";");
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()) {
+					id=rs.getInt("idclient");
+					System.out.println("id user is"+id);
+				}
+			}catch (Exception e) {
+				// TODO: handle exception
+			
+			}
+			return id;
+		}
+		
 		public void addUser(Users user) {
 			Connection conn = SingletonConnection.getConnection();
 			PreparedStatement ps;

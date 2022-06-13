@@ -7,7 +7,7 @@ public class Panier {
 	private int idpanier;
 	private int idclient;
 	private int idproduit;
-	private int prixT;
+	private double prixT;
 	private int qtte;
 	
 	
@@ -59,10 +59,10 @@ public class Panier {
 	public void setIdproduit(int idproduit) {
 		this.idproduit = idproduit;
 	}
-	public int getPrixT() {
+	public double getPrixT() {
 		return prixT;
 	}
-	public void setPrixT(int prixT) {
+	public void setPrixT(double prixT) {
 		this.prixT = prixT;
 	}
 	public int getQtte() {

@@ -224,7 +224,7 @@
             </div>
             <div class="row">
             <c:forEach items="${list}" var="voyage">
-               <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+               <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12">
                   <div class="blog-box">
                      <figure><img src="data:image/jpg;base64, ${voyage.base64Image}" alt="#"/>
                      <span>${ voyage.getDate_depart() }</span>

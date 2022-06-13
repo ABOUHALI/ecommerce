@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.mysql.cj.Session;
 
+import dao.ClientDAO;
 import dao.LoginDAO;
 import model.Users;
 
@@ -22,7 +23,7 @@ import model.Users;
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	LoginDAO ld = new LoginDAO();
-	
+	ClientDAO cd = new ClientDAO();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
@@ -57,16 +58,20 @@ public class Login extends HttpServlet {
 				System.out.println(4);
 				session.setAttribute("admin", user);
 				System.out.println(session.getAttribute("admin"));
-				this.getServletContext().getRequestDispatcher("/homeAdmin.jsp").forward(request, response);
-
+				this.getServletContext().getRequestDispatcher("/homeAdmin").forward(request, response);
+				
 			}else if (role.equals("client")){
 				session.setAttribute("client", user);
+				int iduser = cd.getIdUser(user);
+				int idclient =cd.getIdClient(iduser);
+				System.out.println(idclient);
+				session.setAttribute("idclient", idclient);
 				System.out.println(session.getAttribute("client"));
-				this.getServletContext().getRequestDispatcher("/homeClient.jsp").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/homeClient").forward(request, response);
 			}
 			}
 		else {
-			this.getServletContext().getRequestDispatcher("/errorLOGIN.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/404.jsp").forward(request, response);
 		}
 	}
 	}

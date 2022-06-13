@@ -20,12 +20,12 @@ public class PanierDAO {
 		Connection conn = SingletonConnection.getConnection();
 		PreparedStatement ps;
 		try {
-			ps=conn.prepareStatement("insert into panier(idpanier,idclient,idproduit,prixT,quantite) values(?,?,?,?,?)");
-			ps.setInt(1, panier.getIdpanier());
-			ps.setInt(2, panier.getIdclient());
-			ps.setInt(3, panier.getIdproduit());
-			ps.setInt(4, panier.getPrixT());
-			ps.setInt(5, panier.getQtte());
+
+			ps=conn.prepareStatement("insert into panier (`idclient`, `idproduit`, `prixT`, `quantite`) values(?,?,?,?)");
+			ps.setInt(1, panier.getIdclient());
+			ps.setInt(2, panier.getIdproduit());
+			ps.setDouble(3, panier.getPrixT());
+			ps.setInt(4, panier.getQtte());
 			ps.executeUpdate();
 		}catch(Exception e) {
 			

@@ -12,19 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import dao.ClientDAO;
 import dao.FamilleDAO;
+import dao.ProduitDAO;
 import model.Client;
 import model.Famille;
+import model.Panier;
 import model.Produit;
 import model.Users;
 
 /**
  * Servlet implementation class controller
  */
-@WebServlet(name="s",urlPatterns = {"/homeClient","/register","/prodByFam"})
+@WebServlet(name="s",urlPatterns = {"/homeClient","/register","/prodByFam","/ajoutPanier"})
 public class controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ClientDAO cd=new ClientDAO();   
     FamilleDAO fd = new FamilleDAO();
+    ProduitDAO pd = new ProduitDAO();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -75,6 +78,26 @@ public class controller extends HttpServlet {
 			System.out.println(lp);
 			request.setAttribute("produits", lp);
 			this.getServletContext().getRequestDispatcher("/homeProduit.jsp").forward(request, response);
+
+		}else if(path.equals("/ajoutPanier")) {
+			String idclient =request.getParameter("id_client");
+			int idc =Integer.parseInt(idclient);
+			String idprod =request.getParameter("idprod");
+			int idp = Integer.parseInt(idprod);
+			/////////////////////
+			List<Produit> lp = pd.listerProduit();
+			Produit p =null;
+			for (Produit produit : lp) {
+				if(produit.getId_produit()==idp) {
+					p=produit;
+				}
+			}
+			Panier panier = new Panier();
+			panier.setIdclient(idc);
+			panier.setIdproduit(idp);
+			panier.setPrixT(p.getPrix());
+			panier.setQtte(p.getQtte());
+			this.getServletContext().getRequestDispatcher("/ReservationsClient.jsp").forward(request, response);
 
 		}
 	}

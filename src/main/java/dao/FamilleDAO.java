@@ -130,7 +130,7 @@ public class FamilleDAO {
 				p.setNomFamille(rs.getString("f.nom"));
 				p.setIdfournisseur(id_famille);
 				Blob blob = rs.getBlob("image");
-				 
+				if(blob != null) { 
 				InputStream inputStream = blob.getBinaryStream();
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				byte[] buffer = new byte[4096];
@@ -144,6 +144,7 @@ public class FamilleDAO {
 				 
 				String base64Image = Base64.getEncoder().encodeToString(imageBytes);
 				p.setBase64Image(base64Image);
+				}
 				lp.add(p);
 			}
 		}catch(Exception e) {
