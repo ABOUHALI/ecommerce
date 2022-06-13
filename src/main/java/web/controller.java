@@ -9,9 +9,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.ClientDAO;
 import dao.FamilleDAO;
+import dao.PanierDAO;
 import dao.ProduitDAO;
 import model.Client;
 import model.Famille;
@@ -22,12 +24,13 @@ import model.Users;
 /**
  * Servlet implementation class controller
  */
-@WebServlet(name="s",urlPatterns = {"/homeClient","/register","/prodByFam","/ajoutPanier"})
+@WebServlet(name="s",urlPatterns = {"/homeClient","/register","/prodByFam","/ajoutPanier","/listePanier"})
 public class controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ClientDAO cd=new ClientDAO();   
     FamilleDAO fd = new FamilleDAO();
     ProduitDAO pd = new ProduitDAO();
+    PanierDAO panierd = new PanierDAO();
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -49,7 +52,7 @@ public class controller extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		HttpSession session = request.getSession();
 		String path= request.getServletPath();
 		System.out.println("in cont "+ path);
 		if (path.equals("/register")) {
@@ -97,6 +100,33 @@ public class controller extends HttpServlet {
 			panier.setIdproduit(idp);
 			panier.setPrixT(p.getPrix());
 			panier.setQtte(p.getQtte());
+			///////////////////
+			panierd.addPanier(panier);
+			//////////////
+			List <Panier> paniers= panierd.ListPanier();
+			List<Panier> panierClient = new ArrayList<Panier>();
+			for (Panier pp : paniers) {
+				if(pp.getIdclient()==idc) {
+					panierClient.add(pp);
+				}
+			}
+			request.setAttribute("paniers", panierClient);
+			this.getServletContext().getRequestDispatcher("/listePanier").forward(request, response);
+
+		}else if(path.equals("/listePanier")) {
+			
+			String idcc=String.valueOf(session.getAttribute("idclient"));
+			System.out.println(idcc);
+			int idc =Integer.parseInt(idcc);
+			System.out.println(idc);
+			List <Panier> paniers= panierd.ListPanier();
+			List<Panier> panierClient = new ArrayList<Panier>();
+			for (Panier pp : paniers) {
+				if(pp.getIdclient()==idc) {
+					panierClient.add(pp);
+				}
+			}
+			request.setAttribute("paniers", panierClient);
 			this.getServletContext().getRequestDispatcher("/ReservationsClient.jsp").forward(request, response);
 
 		}

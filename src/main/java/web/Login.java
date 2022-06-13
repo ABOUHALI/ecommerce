@@ -19,7 +19,7 @@ import model.Users;
 /**
  * Servlet implementation class LoginSER
  */
-@WebServlet(name="cs",urlPatterns={"/login"})
+@WebServlet(name="cs",urlPatterns={"/login","/logout"})
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	LoginDAO ld = new LoginDAO();
@@ -44,8 +44,10 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("POST");
+		String path = request.getServletPath();
+		
 		HttpSession session = request.getSession();
+		if(path.equals("/login")) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
@@ -58,12 +60,13 @@ public class Login extends HttpServlet {
 				System.out.println(4);
 				session.setAttribute("admin", user);
 				System.out.println(session.getAttribute("admin"));
-				this.getServletContext().getRequestDispatcher("/homeAdmin").forward(request, response);
+				this.getServletContext().getRequestDispatcher("/listeFournisseur").forward(request, response);
 				
 			}else if (role.equals("client")){
 				session.setAttribute("client", user);
 				int iduser = cd.getIdUser(user);
 				int idclient =cd.getIdClient(iduser);
+			
 				System.out.println(idclient);
 				session.setAttribute("idclient", idclient);
 				System.out.println(session.getAttribute("client"));
@@ -73,6 +76,10 @@ public class Login extends HttpServlet {
 		else {
 			this.getServletContext().getRequestDispatcher("/404.jsp").forward(request, response);
 		}
-	}
+	}else if (path.equals("/logout")) {
+        session.invalidate();
+        this.getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+    }
+		}
 	}
 

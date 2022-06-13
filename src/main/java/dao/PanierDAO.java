@@ -28,7 +28,7 @@ public class PanierDAO {
 			ps.setInt(4, panier.getQtte());
 			ps.executeUpdate();
 		}catch(Exception e) {
-			
+			e.printStackTrace();
 		}
 	
 	}
@@ -38,17 +38,26 @@ public class PanierDAO {
 		Connection conn =SingletonConnection.getConnection();
 		PreparedStatement ps;
 		try {
-			ps=conn.prepareStatement("select * from panier");
+			ps=conn.prepareStatement("select p.*,pr.nom,pr.prix,pr.image ,pr.description from panier p,produit pr where p.idproduit=pr.idproduit");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Panier panier =new Panier();
+				byte r = rs.getByte("reserve");
+				panier.setReserve(false);
+				if(r==1) {
+					panier.setReserve(true);
+				}
 				panier.setIdclient(rs.getInt("idclient"));
 				panier.setIdpanier(rs.getInt("idpanier"));
 				panier.setIdproduit(rs.getInt("idproduit"));
 				panier.setPrixT(rs.getInt("prixT"));
 				panier.setQtte(rs.getInt("quantite"));
+				panier.setProduit(rs.getString("nom"));
+				panier.setDescription(rs.getString("description"));
+				
+				
 				Blob blob = rs.getBlob("image");
-				 
+				
 				InputStream inputStream = blob.getBinaryStream();
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				byte[] buffer = new byte[4096];
@@ -66,7 +75,7 @@ public class PanierDAO {
 			}
 	
 	}catch(Exception e ) {
-		
+		e.printStackTrace();
 	}
 		return lpaniers;
 }

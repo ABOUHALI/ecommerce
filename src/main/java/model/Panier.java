@@ -10,7 +10,18 @@ public class Panier {
 	private double prixT;
 	private int qtte;
 	
-	
+	public boolean isReserve() {
+		return reserve;
+	}
+	@Override
+	public String toString() {
+		return "Panier [idpanier=" + idpanier + ", idclient=" + idclient + ", idproduit=" + idproduit + ", prixT="
+				+ prixT + ", qtte=" + qtte + ", reserve=" + reserve + ", produit=" + produit + ", description=" + description + "]";
+	}
+	public void setReserve(boolean reserve) {
+		this.reserve = reserve;
+	}
+	private boolean reserve;
 	//////////////////
 	private String produit;
 	private String photo;

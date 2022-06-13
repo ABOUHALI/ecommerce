@@ -71,7 +71,7 @@
 
 			<!-- page content -->
 			<div class="right_col" role="main">
-				<form method="post" action="confirmerAchat">
+				<form method="post" action="modifQtte">
 
 					<div class="">
 						<div class="page-title">
@@ -107,7 +107,8 @@
 														width="30" height="35" style="border-radius: 50%;" /></td>
 													<td>${ p.produit}</td>
 													<td>${ p.prixT }</td>
-													<td><c:out value="${ p.qtte }"/>
+													<td><input name="qtte"
+														value="<c:out value="${ p.qtte }"/>"></td>
 													<td>${ p.description } </td>
 
 													<td><a href="supprimerPanier?id_panier=${p.idpanier}"><i
@@ -122,7 +123,7 @@
 							</div>
 						</div>
 					</div>
-					<input type="button" class="btn btn-info" value="Confirmer">
+					<input type="button" class="btn btn-info" value="Save">
 				</form>
 			</div>
 			<!-- /page content -->

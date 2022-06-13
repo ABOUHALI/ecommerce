@@ -157,7 +157,7 @@
                               </form>-->
                               
 							<c:if test="${not empty client}">
-                              <button onclick="window.location.href ='ajoutPanier?id_client='${idclient}'&idprod='${produit.getId_produit()}';" type="submit" class="btn btn-primary btn-sm">
+                              <button onclick="window.location.href ='ajoutPanier?id_client=${idclient}&idprod=${produit.getId_produit()}';" type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-user"> </i> Ajouter au panier
                               </button>
                              </c:if>

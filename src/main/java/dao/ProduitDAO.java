@@ -91,7 +91,7 @@ public class ProduitDAO {
 				produit.setDescription(rs.getString("description"));
 				produit.setQtte(rs.getInt("quantite"));
 				Blob blob = rs.getBlob("image");
-				 
+				if(blob!=null) {
 				InputStream inputStream = blob.getBinaryStream();
 				ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 				byte[] buffer = new byte[4096];
@@ -106,13 +106,16 @@ public class ProduitDAO {
 				String base64Image = Base64.getEncoder().encodeToString(imageBytes);
 				produit.setBase64Image(base64Image);
 				System.out.println(produit.getNom());
-				produits.add(produit);
-			
 				inputStream.close();
 				outputStream.close();
+				}
+				produits.add(produit);
+			
+				
 			}
 			} catch (Exception e) {
 				// TODO: handle exception
+				e.printStackTrace();
 			}
 		return produits;
 	}	
