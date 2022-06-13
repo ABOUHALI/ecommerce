@@ -2,6 +2,7 @@ package web;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -24,7 +25,8 @@ import model.Users;
 /**
  * Servlet implementation class controller
  */
-@WebServlet(name="s",urlPatterns = {"/homeClient","/register","/prodByFam","/ajoutPanier","/listePanier","/supprimerPanier"})
+@WebServlet(name="s",urlPatterns = {"/homeClient","/register","/prodByFam","/ajoutPanier","/listePanier"
+		,"/supprimerPanier","/modifQtte.java"})
 public class controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ClientDAO cd=new ClientDAO();   
@@ -99,7 +101,7 @@ public class controller extends HttpServlet {
 			panier.setIdclient(idc);
 			panier.setIdproduit(idp);
 			panier.setPrixT(p.getPrix());
-			panier.setQtte(p.getQtte());
+			panier.setQtte(1);
 			///////////////////
 			panierd.addPanier(panier);
 			//////////////
@@ -110,15 +112,16 @@ public class controller extends HttpServlet {
 					panierClient.add(pp);
 				}
 			}
+			session.setAttribute("quantite", p.getQtte());
 			request.setAttribute("paniers", panierClient);
 			this.getServletContext().getRequestDispatcher("/listePanier").forward(request, response);
 
 		}else if(path.equals("/listePanier")) {
 			
 			String idcc=String.valueOf(session.getAttribute("idclient"));
-			System.out.println(idcc);
+			//System.out.println(idcc);
 			int idc =Integer.parseInt(idcc);
-			System.out.println(idc);
+			//System.out.println(idc);
 			List <Panier> paniers= panierd.ListPanier();
 			List<Panier> panierClient = new ArrayList<Panier>();
 			for (Panier pp : paniers) {
@@ -127,7 +130,26 @@ public class controller extends HttpServlet {
 				}
 			}
 			request.setAttribute("paniers", panierClient);
-			this.getServletContext().getRequestDispatcher("/ReservationsClient.jsp").forward(request, response);
+			session.setAttribute("paniers", panierClient);
+			this.getServletContext().getRequestDispatcher("/modifQtte.jsp").forward(request, response);
+
+		}else if(path.equals("/supprimerPanier")) {
+			Integer idpanier = Integer.parseInt(request.getParameter("id_panier"));
+			panierd.deletePanier(idpanier);
+			this.getServletContext().getRequestDispatcher("/listePanier").forward(request, response);
+		}else if(path.equals("/modifQtte.java")){
+			System.out.println("modiferqte");
+			String[] qttes=request.getParameterValues("qtte");
+			List<Panier> paniers=(List<Panier>) session.getAttribute("paniers");
+			int i=0;
+			for (Panier panier : paniers) {
+				int qt = Integer.parseInt(qttes[i]);
+				panierd.modifierPanier(panier.getIdpanier(), qt);
+				i++;
+			}
+			List<Panier> pan=panierd.ListPanier();
+			session.setAttribute("paniers", pan);
+			this.getServletContext().getRequestDispatcher("/listePanier").forward(request, response);
 
 		}
 	}
