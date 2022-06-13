@@ -35,9 +35,8 @@
 			<div class="col-md-3 left_col">
 				<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
-						<a href="afficherVoyages?id_client=${client1.getId() }"
-							class="site_title"><i class="fa fa-money"></i> <span>Nos
-								offres</span></a>
+						<a href="homeClient"
+							class="site_title"><i class="fa fa-money"></i> <span>Acceuil</span></a>
 					</div>
 
 					<div class="clearfix"></div>
@@ -124,6 +123,7 @@
 					</div>
 					<input type="button" class="btn btn-info" value="Confirmer">
 				</form>
+				<form method="post" action="modifierQtte"><input type="button" class="btn btn-info" value="Modifier"></form>
 			</div>
 			<!-- /page content -->
 

@@ -24,7 +24,7 @@ import model.Users;
 /**
  * Servlet implementation class controller
  */
-@WebServlet(name="s",urlPatterns = {"/homeClient","/register","/prodByFam","/ajoutPanier","/listePanier"})
+@WebServlet(name="s",urlPatterns = {"/homeClient","/register","/prodByFam","/ajoutPanier","/listePanier","/supprimerPanier"})
 public class controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ClientDAO cd=new ClientDAO();   
