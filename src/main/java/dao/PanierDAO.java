@@ -25,7 +25,7 @@ public class PanierDAO {
 			ps.setInt(1, panier.getIdclient());
 			ps.setInt(2, panier.getIdproduit());
 			ps.setDouble(3, panier.getPrixT());
-			ps.setInt(4, panier.getQtte());
+			ps.setInt(4, 1);
 			ps.executeUpdate();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -92,5 +92,38 @@ public class PanierDAO {
 		e.printStackTrace();
 	}
 		return lpaniers;
+}
+	
+	
+	public void deletePanier(int idpanier) {
+		boolean b = false;
+		Connection conn = SingletonConnection.getConnection();
+		PreparedStatement ps;
+		try {
+		String sql = "delete from panier where idpanier=?";
+		ps =conn.prepareStatement(sql);
+		ps.setInt(1,idpanier);
+		ps.executeUpdate();
+		b = true;
+
+		} catch (Exception e) {
+			System.err.println("problem in deleting ...");
+		}
+		//return b;
+		} 
+	
+	public void modifierPanier(int idp,int qtte) {
+		Connection conn = SingletonConnection.getConnection();
+		PreparedStatement ps;
+		String sql="update  panier set quantite=? where idpanier=?";
+		try {
+			ps =conn.prepareStatement(sql);
+			ps.setInt(1, qtte);
+			ps.setInt(2, idp);
+			ps.executeUpdate();
+			ps.close();
+		}catch(Exception e ) {
+			e.printStackTrace();
+		}
 }
 }
