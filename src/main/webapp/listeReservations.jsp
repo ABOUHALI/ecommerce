@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  <% if(session.getAttribute("admin")==null){ 
+<head>
+<% if(session.getAttribute("admin")==null){ 
         response.sendRedirect("login.jsp");} 
    	 %>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -116,19 +117,19 @@ function myFunction() {
   }
 }
 </script>
-    <!-- plugins:js -->
-    <script src="assets/vendors/js/vendor.bundle.base.js"></script>
-    <script src="assets/vendors/js/vendor.bundle.addons.js"></script>
-    <!-- endinject -->
-    <!-- Plugin js for this page-->
-    <!-- End plugin js for this page-->
-    <!-- inject:js -->
-    <script src="assets/js/shared/off-canvas.js"></script>
- 
-    <!-- endinject -->
-    <!-- Custom js for this page-->
-    <script src="assets/js/demo_1/dashboard.js"></script>
-    <!-- End custom js for this page-->
-    <script src="assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
-  </body>
+	<!-- plugins:js -->
+	<script src="assets/vendors/js/vendor.bundle.base.js"></script>
+	<script src="assets/vendors/js/vendor.bundle.addons.js"></script>
+	<!-- endinject -->
+	<!-- Plugin js for this page-->
+	<!-- End plugin js for this page-->
+	<!-- inject:js -->
+	<script src="assets/js/shared/off-canvas.js"></script>
+
+	<!-- endinject -->
+	<!-- Custom js for this page-->
+	<script src="assets/js/demo_1/dashboard.js"></script>
+	<!-- End custom js for this page-->
+	<script src="assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
+</body>
 </html>
