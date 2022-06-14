@@ -10,23 +10,37 @@ public class Panier {
 	private double prixT;
 	private int qtte;
 	
-	public boolean isReserve() {
-		return reserve;
-	}
-	@Override
-	public String toString() {
-		return "Panier [idpanier=" + idpanier + ", idclient=" + idclient + ", idproduit=" + idproduit + ", prixT="
-				+ prixT + ", qtte=" + qtte + ", reserve=" + reserve + ", produit=" + produit + ", description=" + description + "]";
-	}
-	public void setReserve(boolean reserve) {
-		this.reserve = reserve;
-	}
+	
 	private boolean reserve;
 	//////////////////
 	private String produit;
 	private String photo;
 	private InputStream is;
 	private String description;
+	
+	private String qtte_max;
+	
+	private String nom_client;
+	private String prenom_client;
+	
+	public String getQtte_max() {
+		return qtte_max;
+	}
+	public void setQtte_max(String qtte_max) {
+		this.qtte_max = qtte_max;
+	}
+	public String getNom_client() {
+		return nom_client;
+	}
+	public void setNom_client(String nom_client) {
+		this.nom_client = nom_client;
+	}
+	public String getPrenom_client() {
+		return prenom_client;
+	}
+	public void setPrenom_client(String prenom_client) {
+		this.prenom_client = prenom_client;
+	}
 	
 	public String getProduit() {
 		return produit;
@@ -82,5 +96,15 @@ public class Panier {
 	public void setQtte(int qtte) {
 		this.qtte = qtte;
 	}
-	
+	public boolean isReserve() {
+		return reserve;
+	}
+	@Override
+	public String toString() {
+		return "Panier [idpanier=" + idpanier + ", idclient=" + idclient + ", idproduit=" + idproduit + ", prixT="
+				+ prixT + ", qtte=" + qtte + ", reserve=" + reserve + ", produit=" + produit + ", description=" + description + "]";
+	}
+	public void setReserve(boolean reserve) {
+		this.reserve = reserve;
+	}
 }

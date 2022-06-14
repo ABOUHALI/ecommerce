@@ -107,7 +107,7 @@
 														width="30" height="35" style="border-radius: 50%;" /></td>
 													<td>${ p.produit}</td>
 													<td>${ p.prixT }</td>
-													<td><input name="qtte" min="1" max="${quantite}" type="number"
+													<td><input name="qtte" min="1" max="${p.qtte_max}" type="number"
 														value="${p.qtte}"></td>
 													<td>${ p.description } </td>
 
