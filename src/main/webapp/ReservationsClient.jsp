@@ -29,6 +29,7 @@
 <% if(session.getAttribute("client")==null){ 
         response.sendRedirect("login.jsp");} 
    	 %>
+   	 <script type="text/javascript">let somme=0</script>
 <body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
@@ -70,7 +71,7 @@
 
 			<!-- page content -->
 			<div class="right_col" role="main">
-				<form method="post" action="confirmerAchat">
+				<form method="post" action="confirmerAchat?id_client=${idclient }">
 
 					<div class="">
 						<div class="page-title">
@@ -112,6 +113,7 @@
 													<td><a href="supprimerPanier?id_panier=${p.idpanier}"><i
 															class="fa fa-trash-o" aria-hidden="true"></i>Supprimer</a></td>
 												</tr>
+												<script type="text/javascript">somme=somme+(${p.prixT}*${p.qtte})</script>
 											</c:forEach>
 										</tbody>
 
@@ -121,7 +123,28 @@
 							</div>
 						</div>
 					</div>
-					<input type="button" class="btn btn-info" value="Confirmer">
+					<button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalForm">Confirmer</button>
+					<div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Reservation</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Total d'achat : </label>
+                        <p id="somme"></p>
+                        <script type="text/javascript">let l=document.getElementById("somme")
+                        l.innerHTML = somme</script>
+                    </div>
+                    <div class="modal-footer d-block">
+                        <button type="submit" class="btn btn-warning float-end">Reserver</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
 				</form>
 				<form method="post" action="modifierQtte"><input type="button" class="btn btn-info" value="Modifier"></form>
 			</div>
@@ -138,7 +161,7 @@
 			<!-- /footer content -->
 		</div>
 	</div>
-
+	
 	<!-- jQuery -->
 	<script src="vendors/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap -->

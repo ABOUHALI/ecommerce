@@ -24,7 +24,7 @@ import model.Users;
 /**
  * Servlet implementation class controller
  */
-@WebServlet(name="s",urlPatterns = {"/homeClient","/register","/prodByFam","/ajoutPanier","/listePanier","/supprimerPanier"})
+@WebServlet(name="s",urlPatterns = {"/confirmerAchat","/homeClient","/register","/prodByFam","/ajoutPanier","/listePanier","/supprimerPanier"})
 public class controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ClientDAO cd=new ClientDAO();   
@@ -128,6 +128,13 @@ public class controller extends HttpServlet {
 			}
 			request.setAttribute("paniers", panierClient);
 			this.getServletContext().getRequestDispatcher("/ReservationsClient.jsp").forward(request, response);
+
+		}else if(path.equals("/confirmerAchat")) {
+			
+			int idc=Integer.parseInt(request.getParameter("id_client"));
+			List <Panier> paniers= panierd.ListPanier();
+			panierd.reserver(idc);
+			this.getServletContext().getRequestDispatcher("/homeClient").forward(request, response);
 
 		}
 	}

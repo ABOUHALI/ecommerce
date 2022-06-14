@@ -32,6 +32,20 @@ public class PanierDAO {
 		}
 	
 	}
+	public void reserver(int id_client) {
+		// TODO Auto-generated method stub
+		Connection conn = SingletonConnection.getConnection();
+		PreparedStatement ps;
+		try {
+
+			ps=conn.prepareStatement("update  panier set reserve=1 where idclient=?");
+			ps.setInt(1, id_client);
+			ps.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	
+	}
 	
 	public List<Panier> ListPanier() {
 		List<Panier> lpaniers =new ArrayList<Panier>();
