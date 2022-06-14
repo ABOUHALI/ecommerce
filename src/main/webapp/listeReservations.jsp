@@ -43,7 +43,7 @@
            <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                   <div class="card-body">
-                    <h4 class="card-title">List Fournisseur<br></h4>
+                    <h4 class="card-title">List Reservation<br></h4>
                     <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
                     <table class="table table-striped">
                       <thead>

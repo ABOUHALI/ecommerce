@@ -55,11 +55,19 @@
               </div>
             </li>
              <li class="nav-item">
-              <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
                 <i class="menu-icon typcn typcn-coffee"></i>
-                <span class="menu-title"><a href="listeReservation">Liste Reservation</a></span>
+                <span class="menu-title">Reservations</span>
                 <i class="menu-arrow"></i>
               </a>
-            
+              <div class="collapse" id="ui-basic2">
+                <ul class="nav flex-column sub-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="listeReservation">Liste Reservation</a>
+                  </li>
+                 
+                </ul>
+              </div>
+            </li>
           </ul>
         </nav>

@@ -43,7 +43,7 @@ public class ControllerReservation extends HttpServlet {
 		String path=request.getServletPath();
 		if(path.equals("/listeReservation")) {
 			List<Panier> lp = pd.ListReservation();
-			request.setAttribute("reservations", lp);
+			request.setAttribute("paniers", lp);
 			this.getServletContext().getRequestDispatcher("/listeReservations.jsp").forward(request, response);
 
 		}
