@@ -51,8 +51,9 @@
                           <th> </th>
                           <th> Nom Client </th>
                           <th> Prenom Client</th>
-                          <th>idProduit</th>
-                          <th>nomProduit</th>
+                          <th>id produit</th>
+                          <th>nom produit</th>
+                          <th>quantite</th>
                         </tr>
                       </thead>
                       
@@ -72,7 +73,9 @@
                          <td>
                           ${p.produit }
                           </td>
-                          
+                          <td>
+                          ${p.qtte }
+                          </td>
                           
                         </tr>
                         </c:forEach>
@@ -103,7 +106,7 @@ function myFunction() {
   li = ul.getElementsByTagName("tr");
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("td")[2];
+    a = li[i].getElementsByTagName("td")[1];
     console.log(a);
     if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
       li[i].style.display = "";

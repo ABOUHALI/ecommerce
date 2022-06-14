@@ -73,7 +73,7 @@ public class PanierDAO {
 		Connection conn =SingletonConnection.getConnection();
 		PreparedStatement ps;
 		try {
-			ps=conn.prepareStatement("select p.*,pr.nom,pr.prix,pr.image ,pr.description,pr.quantite from panier p,produit pr where p.idproduit=pr.idproduit");
+			ps=conn.prepareStatement("select p.*,pr.nom,pr.prix,pr.image ,pr.description,pr.quantite from panier p,produit pr where p.idproduit=pr.idproduit and p.reserve=0");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Panier panier =new Panier();
@@ -91,7 +91,7 @@ public class PanierDAO {
 				panier.setDescription(rs.getString("description"));
 				panier.setReserve(rs.getBoolean("reserve"));
 				panier.setQtte_max(rs.getString("pr.quantite"));
-				
+				System.out.println("in daooo "+rs.getString("pr.quantite"));
 				Blob blob = rs.getBlob("image");
 				
 				InputStream inputStream = blob.getBinaryStream();
@@ -124,12 +124,13 @@ public class PanierDAO {
 		try {
 			ps=conn.prepareStatement("select p.* , c.nom,c.prenom , pr.idproduit,pr.nom from \r\n"
 					+ "panier p ,produit pr ,client c where p.idproduit=pr.idproduit \r\n"
-					+ "and c.idclient=p.idclient");
+					+ "and c.idclient=p.idclient and p.reserve=1");
 			ResultSet rs =ps.executeQuery();
 			while(rs.next()) {
 				Panier p = new Panier();
 				p.setIdpanier(rs.getInt("idpanier"));
 				p.setIdproduit(rs.getInt("idproduit"));
+				p.setQtte(rs.getInt("p.quantite"));
 				p.setNom_client(rs.getString("c.nom"));
 				p.setPrenom_client(rs.getString("c.prenom"));
 				p.setProduit(rs.getString("pr.nom"));
