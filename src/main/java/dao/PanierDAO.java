@@ -198,4 +198,18 @@ public class PanierDAO {
 			e.printStackTrace();
 		}
 }
+	public void deleteProduit(int idproduit) {
+		Connection conn = SingletonConnection.getConnection();
+		PreparedStatement ps;
+		try {
+		String sql = "delete from panier where idproduit=?";
+		ps =conn.prepareStatement(sql);
+		ps.setInt(1,idproduit);
+		ps.executeUpdate();
+
+		} catch (Exception e) {
+			System.err.println("problem in deleting ...");
+		}
+		//return b;
+		} 
 }

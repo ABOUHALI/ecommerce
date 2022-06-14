@@ -17,6 +17,7 @@ import com.itextpdf.text.log.SysoCounter;
 
 import dao.FamilleDAO;
 import dao.FournissuerDAO;
+import dao.PanierDAO;
 import dao.ProduitDAO;
 import model.Famille;
 import model.Fournisseur;
@@ -32,6 +33,7 @@ public class ControllerProduit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     InputStream inputStream=null;
     ProduitDAO pd = new ProduitDAO();
+    PanierDAO pnd=new PanierDAO();
     FournissuerDAO fd = new FournissuerDAO();
     FamilleDAO fad = new FamilleDAO();
     /**
@@ -158,6 +160,7 @@ public class ControllerProduit extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/listeProduit").forward(request, response);
 		}else if(path.equals("/supprimerProduit")) {
 			Integer id= Integer.parseInt(request.getParameter("id_prod"));
+			pnd.deleteProduit(id);
 			pd.deleteProduit(id);
 			this.getServletContext().getRequestDispatcher("/listeProduit").forward(request, response);
 
