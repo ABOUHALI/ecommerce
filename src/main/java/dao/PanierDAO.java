@@ -69,7 +69,7 @@ public class PanierDAO {
 				panier.setProduit(rs.getString("nom"));
 				panier.setDescription(rs.getString("description"));
 				panier.setReserve(rs.getBoolean("reserve"));
-				
+				panier.setQtte_max(rs.getString("pr.quantite"));
 				
 				Blob blob = rs.getBlob("image");
 				
@@ -95,6 +95,55 @@ public class PanierDAO {
 		return lpaniers;
 }
 	
+	
+	public List<Panier> ListReservation(){
+		List<Panier> lpaniers =new ArrayList<Panier>();
+		Connection conn =SingletonConnection.getConnection();
+		PreparedStatement ps;
+		try {
+			ps=conn.prepareStatement("select p.* , c.nom,c.prenom , pr.idproduit,pr.nom from \r\n"
+					+ "panier p ,produit pr ,client c where p.idproduit=pr.idproduit \r\n"
+					+ "and c.idclient=p.idclient");
+			ResultSet rs =ps.executeQuery();
+			while(rs.next()) {
+				Panier p = new Panier();
+				p.setIdpanier(rs.getInt("idpanier"));
+				p.setIdproduit(rs.getInt("idproduit"));
+				p.setNom_client(rs.getString("c.nom"));
+				p.setPrenom_client(rs.getString("c.prenom"));
+				p.setProduit(rs.getString("pr.nom"));
+				lpaniers.add(p);
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return lpaniers;
+	}
+	
+	public void updatePanier(int idpanier,double prix) {
+		List <Panier> paniers= ListPanier();
+		List<Panier> monpanier=new ArrayList<>();
+		double somme=0;
+		for (Panier pp : paniers) {
+			if(pp.getIdpanier()==idpanier ) {
+				somme+=pp.getPrixT();
+				monpanier.add(pp);
+			}
+		}
+		Connection conn = SingletonConnection.getConnection();
+		PreparedStatement ps;
+		String sql="update  panier set prixT=? where idpanier=?";
+		try {
+			ps =conn.prepareStatement(sql);
+			ps.setInt(1,(int)prix);
+			ps.setInt(2, idpanier);
+			ps.executeUpdate();
+			ps.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	public void deletePanier(int idpanier) {
 		boolean b = false;

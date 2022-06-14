@@ -35,6 +35,7 @@
                   </li>
                 </ul>
               </div>
+              
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic">
@@ -53,6 +54,12 @@
                 </ul>
               </div>
             </li>
+             <li class="nav-item">
+              <a class="nav-link" data-toggle="collapse" href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic">
+                <i class="menu-icon typcn typcn-coffee"></i>
+                <span class="menu-title"><a href="listeReservation">Liste Reservation</a></span>
+                <i class="menu-arrow"></i>
+              </a>
             
           </ul>
         </nav>
