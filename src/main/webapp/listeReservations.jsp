@@ -7,91 +7,97 @@
 <% if(session.getAttribute("admin")==null){ 
         response.sendRedirect("login.jsp");} 
    	 %>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Star Admin Premium Bootstrap Admin Dashboard Template</title>
-<!-- plugins:css -->
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-<link rel="stylesheet"
-	href="assets/vendors/css/vendor.bundle.addons.css">
-<!-- endinject -->
-<!-- plugin css for this page -->
-<!-- End plugin css for this page -->
-<!-- inject:css -->
-<link rel="stylesheet" href="assets/css/shared/style.css">
-<!-- endinject -->
-<!-- Layout styles -->
-<link rel="stylesheet" href="assets/css/demo_1/style.css">
-<!-- End Layout styles -->
-<link rel="shortcut icon" href="assets/images/favicon.ico" />
-</head>
 
-<body>
-	<div class="container-scroller">
-		<!-- partial:partials/_navbar.html -->
-		<jsp:include page="TopNavBarAdmin.jsp" />
-		<!-- partial -->
-		<div class="container-fluid page-body-wrapper">
-			<!-- partial:partials/_sidebar.html -->
-			<jsp:include page="sideBarAdmin.jsp" />
-			<!-- partial -->
-			<div class="main-panel">
-				<div class="col-12 grid-margin">
-					<div class="col-lg-12 grid-margin stretch-card">
-						<div class="card">
-							<div class="card-body">
-								<h4 class="card-title">
-									List Reservation<br>
-								</h4>
-								<input type="text" id="mySearch" onkeyup="myFunction()"
-									placeholder="Search.." title="Type in a category">
-								<table class="table table-striped">
-									<thead>
-										<tr>
-											<th></th>
-											<th>Nom Client</th>
-											<th>Prenom Client</th>
-											<th>idProduit</th>
-											<th>nomProduit</th>
-										</tr>
-									</thead>
-
-									<tbody id="myMenu">
-										<c:forEach items="${paniers}" var="p">
-											<tr>
-												<td>${p.idpanier}</td>
-												<td>${ p.nom_client }</td>
-												<td>${ p.prenom_client }</td>
-												<td>${p.idproduit}</td>
-												<td>${p.produit }</td>
-
-
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
-				</div>
-				<footer class="footer">
-					<div class="container-fluid clearfix"></div>
-				</footer>
-			</div>
-			<!-- main-panel ends -->
-		</div>
-		<!-- page-body-wrapper ends -->
-	</div>
-	<!-- container-scroller -->
-	<script>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Star Admin Premium Bootstrap Admin Dashboard Template</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
+    <link rel="stylesheet" href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.addons.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="assets/css/shared/style.css">
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="assets/css/demo_1/style.css">
+    <!-- End Layout styles -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+  </head>
+  
+  <body>
+    <div class="container-scroller">
+      <!-- partial:partials/_navbar.html -->
+      <jsp:include page="TopNavBarAdmin.jsp" />
+      <!-- partial -->
+      <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_sidebar.html -->
+        <jsp:include page="sideBarAdmin.jsp" />
+        <!-- partial -->
+        <div class="main-panel">
+        <div class="col-12 grid-margin">
+           <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">List Reservation<br></h4>
+                    <input type="text" id="mySearch" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+                    <table class="table table-striped">
+                      <thead>
+                        <tr>
+                          <th> </th>
+                          <th> Nom Client </th>
+                          <th> Prenom Client</th>
+                          <th>id produit</th>
+                          <th>nom produit</th>
+                          <th>quantite</th>
+                        </tr>
+                      </thead>
+                      
+                      <tbody id="myMenu">
+                      <c:forEach items="${paniers}" var="p">
+                        <tr >
+                          <td>
+                          	${p.idpanier}
+                          </td>
+                          <td> ${ p.nom_client } </td>
+                          <td>${ p.prenom_client }
+                          </td>
+                          <td>
+                          ${p.idproduit}
+							
+                          </td>
+                         <td>
+                          ${p.produit }
+                          </td>
+                          <td>
+                          ${p.qtte }
+                          </td>
+                          
+                        </tr>
+                        </c:forEach>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              </div>
+              <footer class="footer">
+            <div class="container-fluid clearfix">
+              
+            </div>
+          </footer>
+              </div>
+        <!-- main-panel ends -->
+      </div>
+      <!-- page-body-wrapper ends -->
+    </div>
+    <!-- container-scroller -->
+    <script>
 function myFunction() {
   // Declare variables
   var input, filter, ul, li, a, i;
@@ -101,7 +107,7 @@ function myFunction() {
   li = ul.getElementsByTagName("tr");
   // Loop through all list items, and hide those who don't match the search query
   for (i = 0; i < li.length; i++) {
-    a = li[i].getElementsByTagName("td")[2];
+    a = li[i].getElementsByTagName("td")[1];
     console.log(a);
     if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
       li[i].style.display = "";

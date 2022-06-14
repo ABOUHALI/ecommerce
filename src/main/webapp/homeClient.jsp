@@ -103,20 +103,14 @@
 											<li><a href="reservations?id_client=${client.getId() }">Mes
 													reservations</a></li>
 										</c:if>
-										<li><a href="#travel">Activités</a></li>
-										<li><a href="#contact">Contact Us</a></li>
-										<li><a
-											href="">Nos
-												offres</a></li>
-
-										<li><a href="modifierInfos.jsp">Vos informations</a></li>
+										<li><a href="#about">About us</a></li>
 										<c:if test="${not empty client}">
 
 											<li><a href="logout">log out</a></li>
 										</c:if>
 										<c:if test="${empty client}">
-
-											<li><a href="login">log in</a></li>
+											<li><a href="register.jsp">Sign up</a></li>
+											<li><a href="login.jsp">log in</a></li>
 										</c:if>
 									</ul>
 								</nav>
@@ -173,9 +167,7 @@
 									Target (TGT) supplemented its brick-and-mortar presence with an
 									online store that allows customers to purchase everything from
 									clothes and coffeemakers to toothpaste and action figures right
-									from their homes. <br> <br> <input type="button"
-									onclick="window.location.href = 'https://github.com/asmae1m/agence_voyage';"
-									value="Notre projet" />
+									from their homes. <br> <br> 
 								</span>
 							</p>
 							<div class="palne-img-area">
@@ -185,7 +177,6 @@
 					</div>
 				</div>
 			</div>
-			<a href="#">Read More</a>
 		</div>
 	</div>
 	<!-- end about -->

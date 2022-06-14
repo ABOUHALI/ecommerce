@@ -67,8 +67,7 @@
                           <img src="data:image/jpg;base64, ${famille.base64Image}" width="240" height="300"/>
                           </td>
                           
-                          <td><a href="supprimerFam?id_fam=${famille.getIdfamille()}" ><i
-								class="fa fa-trash-o" aria-hidden="true"></i>Supprimer</a></td>
+                        
 						  <td><a href="modifierFam?id_fam=${famille.idfamille}" ><i
 								class="fa fa-trash-o" aria-hidden="true"></i>Modifier</a></td>
                         </tr>

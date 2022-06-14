@@ -31,8 +31,7 @@ public class Login extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("GET");
-		this.getServletContext().getRequestDispatcher("login.jsp").forward(request, response);
+		doPost(request, response);
 
 
 	}
@@ -78,7 +77,7 @@ public class Login extends HttpServlet {
 		}
 	}else if (path.equals("/logout")) {
         session.invalidate();
-        this.getServletContext().getRequestDispatcher("/index.html").forward(request, response);
+        this.getServletContext().getRequestDispatcher("/homeClient").forward(request, response);
     }
 		}
 	}

@@ -68,51 +68,61 @@
       <!-- end loader -->
       <!-- header -->
       <header>
-         <!-- header inner -->
-         <div class="header">
-            <div class="header_white_section">
-               <div class="container-fluid">
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="header_information">
-                           <ul>
-                              <li><img src="images/1.png" alt="#"/> Bachelor U.MY.ISMAIL</li>
-                              <li><img src="images/2.png" alt="#"/> +71  5678954378</li>
-                              <li><img src="images/3.png" alt="#"/> Bonjour ${client.getLogin() }, ici votre espace!</li>
-                           </ul>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <div class="container">
-               <div class="row">
-                  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
-                     <div class="menu-area">
-                        <div class="limit-box">
-                           <nav class="main-menu">
-                             <ul class="menu-area-main">
-                                 <li> <a href="monPanier?id_client=${client1.getId() }">Mon panier</a> </li>
-                                 <li><a href="reservations?id_client=${client1.getId() }">Mes reservations</a></li>
-                                 <li><a href="#travel">Activités</a></li>
-                                 <li><a href="#contact">Contact Us</a></li>
-                                 <li><a href="afficherVoyages?id_client=${ client1.getId() }">Nos offres</a></li>
-                                
-                                 <li><a href="modifierInfos.jsp">Vos informations</a></li>
-                                 
-                                 <li><a href="logout">log out</a></li>
-                               
-                              
-                              </ul>
-                           </nav>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- end header inner -->
-      </header>
+		<!-- header inner -->
+		<div class="header">
+			<div class="header_white_section">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="header_information">
+								<ul>
+									<li><img src="images/1.png" alt="#" /> Bachelor
+										U.MY.ISMAIL</li>
+									<li><img src="images/2.png" alt="#" /> +71 5678954378</li>
+									<li><img src="images/3.png" alt="#" /> Bonjour
+										${client.getLogin() }, ici votre espace!</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row">
+					<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+						<div class="menu-area">
+							<div class="limit-box">
+								<nav class="main-menu">
+									<ul class="menu-area-main">
+										<c:if test="${not empty client}">
+
+											<li><a href="listePanier?idclient=${client.getId()}">Mon
+													panier</a></li>
+										</c:if>
+										<c:if test="${not empty client}">
+
+											<li><a href="reservations?id_client=${client.getId() }">Mes
+													reservations</a></li>
+										</c:if>
+										<li><a href="#about">About us</a></li>
+										<c:if test="${not empty client}">
+
+											<li><a href="logout">log out</a></li>
+										</c:if>
+										<c:if test="${empty client}">
+											<li><a href="register.jsp">Sign up</a></li>
+											<li><a href="login.jsp">log in</a></li>
+										</c:if>
+									</ul>
+								</nav>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end header inner -->
+	</header>
       <!-- end header -->
       <section >
          <div class="banner-main">

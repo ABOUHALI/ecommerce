@@ -73,8 +73,7 @@
                           ${fourn.tel }
                           </td>
                           
-                          <td><a href="supprimerFourn?id_f=${fourn.idfournisseur}" ><i
-								class="fa fa-trash-o" aria-hidden="true"></i>Supprimer</a></td>
+                          
 						  <td><a href="modifierFourn?id_f=${fourn.idfournisseur}" ><i
 								class="fa fa-trash-o" aria-hidden="true"></i>Modifier</a></td>
                         </tr>
