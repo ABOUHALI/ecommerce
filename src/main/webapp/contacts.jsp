@@ -24,7 +24,7 @@
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
   </head>
-<% if(session.getAttribute("client1")==null){ 
+<% if(session.getAttribute("client")==null){ 
         response.sendRedirect("login.jsp");} 
    	 %>
   <body class="nav-md">

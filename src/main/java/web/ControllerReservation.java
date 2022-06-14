@@ -15,7 +15,7 @@ import model.Panier;
 /**
  * Servlet implementation class ControllerReservation
  */
-@WebServlet(name="reservation",urlPatterns = {"/listeReservation"})
+@WebServlet(name="reservation",urlPatterns = {"/listeReservation","/mesreservations"})
 public class ControllerReservation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       PanierDAO pd = new PanierDAO();
@@ -46,6 +46,8 @@ public class ControllerReservation extends HttpServlet {
 			request.setAttribute("paniers", lp);
 			this.getServletContext().getRequestDispatcher("/listeReservations.jsp").forward(request, response);
 
+		}else if(path.equals("/mesreservations")) {
+			
 		}
 	}
 
