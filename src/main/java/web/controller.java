@@ -152,7 +152,7 @@ public class controller extends HttpServlet {
 			this.getServletContext().getRequestDispatcher("/listePanier").forward(request, response);
 
 		}else if(path.equals("/confirmerAchat")) {
-			
+			System.out.println("in confirmer achat");
 			int idc=Integer.parseInt(request.getParameter("id_client"));
 			List <Panier> paniers= panierd.ListPanier();
 			panierd.reserver(idc);

@@ -126,7 +126,9 @@
 					</div>
 					<button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalForm">Confirmer</button>
 					<input type="submit" class="btn btn-info" value="Save">
-					<div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					
+				</form>
+				<div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -147,8 +149,6 @@
         </div>
     </div>
 </div>
-				</form>
-				<form method="post" action="modifierQtte"><input type="button" class="btn btn-info" value="Modifier"></form>
 			</div>
 			<!-- /page content -->
 

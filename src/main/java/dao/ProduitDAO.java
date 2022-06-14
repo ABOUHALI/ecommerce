@@ -75,6 +75,23 @@ public class ProduitDAO {
 		}
 		return id;
 	}
+	public int getQtte(int idProduit){
+		Connection conn =SingletonConnection.getConnection();
+		PreparedStatement ps;
+		int id=0;
+		try {
+			ps=conn.prepareStatement("select quantite from produit where idproduit=? ");
+			ps.setInt(1,idProduit);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				id=rs.getInt("quantite");
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		
+		}
+		return id;
+	}
 	public List<Produit> listerProduit() {
 		Connection conn = SingletonConnection.getConnection();
 		PreparedStatement ps;
@@ -134,6 +151,19 @@ public class ProduitDAO {
 		}
 		} 
 	
+	public void modifierQtte(int idproduit,int qtte) {
+		Connection conn = SingletonConnection.getConnection();
+		PreparedStatement ps;
+		System.out.println("in modifier qtte");
+		try {
+				ps =conn.prepareStatement("update  produit set quantite=? where idproduit=?");
+				ps.setInt(1, (getQtte(idproduit)-qtte));
+				ps.setInt(2, idproduit);
+				ps.executeUpdate();
+		}catch(Exception e ) {	
+			
+		}
+	}
 	
 	public void modifierProduit(Produit produit) {
 		Connection conn = SingletonConnection.getConnection();

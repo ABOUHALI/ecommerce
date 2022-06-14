@@ -36,8 +36,9 @@ public class PanierDAO {
 		// TODO Auto-generated method stub
 		Connection conn = SingletonConnection.getConnection();
 		PreparedStatement ps;
+		System.out.println("in reserver");
 		try {
-
+			panier(id_client);
 			ps=conn.prepareStatement("update  panier set reserve=1 where idclient=?");
 			ps.setInt(1, id_client);
 			ps.executeUpdate();
@@ -46,7 +47,27 @@ public class PanierDAO {
 		}
 	
 	}
+	public List<Integer> panier(int idclient) {
+		List<Integer> idproduits =new ArrayList<Integer>();
+		Connection conn =SingletonConnection.getConnection();
+		PreparedStatement ps;
+		ProduitDAO pd=new ProduitDAO();
+		System.out.println("in panier");
+		try {
+			ps=conn.prepareStatement("select * from panier where idclient=? and reserve=0");
+			ps.setInt(1, idclient);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {
+				int id=rs.getInt("idproduit");
+				int qtte=rs.getInt("quantite");
+				pd.modifierQtte(id, qtte);
+			}
 	
+	}catch(Exception e ) {
+		e.printStackTrace();
+	}
+		return idproduits;
+}
 	public List<Panier> ListPanier() {
 		List<Panier> lpaniers =new ArrayList<Panier>();
 		Connection conn =SingletonConnection.getConnection();
