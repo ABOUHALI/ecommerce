@@ -125,13 +125,13 @@ public class controller extends HttpServlet {
 			List <Panier> paniers= panierd.ListPanier();
 			List<Panier> panierClient = new ArrayList<Panier>();
 			for (Panier pp : paniers) {
-				if(pp.getIdclient()==idc) {
+				if(pp.getIdclient()==idc && !pp.isReserve()) {
 					panierClient.add(pp);
 				}
 			}
 			request.setAttribute("paniers", panierClient);
 			session.setAttribute("paniers", panierClient);
-			this.getServletContext().getRequestDispatcher("/modifQtte.jsp").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/ReservationsClient.jsp").forward(request, response);
 
 		}else if(path.equals("/supprimerPanier")) {
 			Integer idpanier = Integer.parseInt(request.getParameter("id_panier"));
@@ -156,7 +156,7 @@ public class controller extends HttpServlet {
 			int idc=Integer.parseInt(request.getParameter("id_client"));
 			List <Panier> paniers= panierd.ListPanier();
 			panierd.reserver(idc);
-			this.getServletContext().getRequestDispatcher("/homeClient").forward(request, response);
+			this.getServletContext().getRequestDispatcher("/listePanier").forward(request, response);
 
 		}
 	}

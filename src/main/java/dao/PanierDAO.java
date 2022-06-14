@@ -52,7 +52,7 @@ public class PanierDAO {
 		Connection conn =SingletonConnection.getConnection();
 		PreparedStatement ps;
 		try {
-			ps=conn.prepareStatement("select p.*,pr.nom,pr.prix,pr.image ,pr.description from panier p,produit pr where p.idproduit=pr.idproduit");
+			ps=conn.prepareStatement("select p.*,pr.nom,pr.prix,pr.image ,pr.description,pr.quantite from panier p,produit pr where p.idproduit=pr.idproduit");
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()) {
 				Panier panier =new Panier();
@@ -68,6 +68,7 @@ public class PanierDAO {
 				panier.setQtte(rs.getInt("quantite"));
 				panier.setProduit(rs.getString("nom"));
 				panier.setDescription(rs.getString("description"));
+				panier.setReserve(rs.getBoolean("reserve"));
 				
 				
 				Blob blob = rs.getBlob("image");

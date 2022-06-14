@@ -71,7 +71,7 @@
 
 			<!-- page content -->
 			<div class="right_col" role="main">
-				<form method="post" action="confirmerAchat?id_client=${idclient }">
+				<form method="post" action="modifQtte.java">
 
 					<div class="">
 						<div class="page-title">
@@ -107,7 +107,8 @@
 														width="30" height="35" style="border-radius: 50%;" /></td>
 													<td>${ p.produit}</td>
 													<td>${ p.prixT }</td>
-													<td><c:out value="${ p.qtte }"/>
+													<td><input name="qtte" min="1" max="${quantite}" type="number"
+														value="${p.qtte}">
 													<td>${ p.description } </td>
 
 													<td><a href="supprimerPanier?id_panier=${p.idpanier}"><i
@@ -124,6 +125,7 @@
 						</div>
 					</div>
 					<button type="button" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#modalForm">Confirmer</button>
+					<input type="submit" class="btn btn-info" value="Save">
 					<div class="modal fade" id="modalForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -139,7 +141,7 @@
                         l.innerHTML = somme</script>
                     </div>
                     <div class="modal-footer d-block">
-                        <button type="submit" class="btn btn-warning float-end">Reserver</button>
+                        <button onclick="window.location.href ='confirmerAchat?id_client=${idclient}';" class="btn btn-warning float-end">Reserver</button>
                     </div>
             </div>
         </div>
