@@ -35,7 +35,7 @@
 			<div class="col-md-3 left_col">
 				<div class="left_col scroll-view">
 					<div class="navbar nav_title" style="border: 0;">
-						<a href="afficherVoyages?id_client=${client1.getId() }"
+						<a href="/homeClient"
 							class="site_title"><i class="fa fa-money"></i> <span>Nos
 								offres</span></a>
 					</div>
@@ -108,7 +108,7 @@
 													<td>${ p.produit}</td>
 													<td>${ p.prixT }</td>
 													<td><input name="qtte" min="1" max="${quantite}" type="number"
-														value=1></td>
+														value="${p.qtte}"></td>
 													<td>${ p.description } </td>
 
 													<td><a href="supprimerPanier?id_panier=${p.idpanier}"><i
