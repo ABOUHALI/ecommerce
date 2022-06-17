@@ -111,10 +111,11 @@
                           </div>
                         </div>
                       </div>
+                      </c:forEach>
 <!-- Modal -->
 
 </div>
-                    </c:forEach>
+                    
                   </div>
                 </div>
             </div>
