@@ -170,7 +170,7 @@ public class ProduitDAO {
 		PreparedStatement ps;
 		try {
 			if(produit.getImage()!=null) {
-				ps =conn.prepareStatement("update  produit set nom=?,idfamille=?,description=?,image=?,quantite=?,idfournisseur=?"
+				ps =conn.prepareStatement("update  produit set nom=?,idfamille=?,description=?,image=?,quantite=?,idfournisseur=?,prix=?"
 											+ " where idproduit=?");
 				ps.setString(1,produit.getNom());
 				ps.setString(3, produit.getDescription());
@@ -179,17 +179,20 @@ public class ProduitDAO {
 				
 				ps.setInt(5, produit.getQtte());
 				ps.setInt(6, produit.getIdfournisseur());
-				ps.setInt(7, produit.getId_produit());
+				ps.setInt(8, produit.getId_produit());
+				ps.setDouble(7, produit.getPrix());
 				ps.executeUpdate();
 			}else {
-				ps =conn.prepareStatement("update  produit set nom=?,idfamille=?,description=?,quantite=?,idfournisseur=?"
+				ps =conn.prepareStatement("update  produit set nom=?,idfamille=?,description=?,quantite=?,idfournisseur=?, prix=?"
 						+ " where idproduit=?");
 				ps.setString(1,produit.getNom());
 				ps.setString(3, produit.getDescription());
 				ps.setInt(2, produit.getIdfamille());
 				ps.setInt(4, produit.getQtte());
 				ps.setInt(5, produit.getIdfournisseur());
-				ps.setInt(6, produit.getId_produit());
+				ps.setDouble(6, produit.getPrix());
+				ps.setInt(7, produit.getId_produit());
+				
 				ps.executeUpdate();
 			}
 			

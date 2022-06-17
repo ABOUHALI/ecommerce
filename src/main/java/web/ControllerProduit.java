@@ -131,6 +131,7 @@ public class ControllerProduit extends HttpServlet {
 			String nom = request.getParameter("nom");
 			String nomFour=request.getParameter("nomFour");
 			double prix=Double.parseDouble(request.getParameter("prix")) ;
+			System.out.println("mod prix : "+prix);
 			int qte=Integer.parseInt(request.getParameter("qte")) ;
 			String famille=request.getParameter("famille");
 			String description=request.getParameter("description");

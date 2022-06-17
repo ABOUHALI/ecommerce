@@ -95,12 +95,12 @@
 									<ul class="menu-area-main">
 										<c:if test="${not empty client}">
 
-											<li><a href="listePanier?idclient=${client.getId()}">Mon
+											<li><a href="listePanier?idclient=${idclient}">Mon
 													panier</a></li>
 										</c:if>
 										<c:if test="${not empty client}">
 
-											<li><a href="reservations?id_client=${client.getId() }">Mes
+											<li><a href="mesreservations?id_client=${idclient }">Mes
 													reservations</a></li>
 										</c:if>
 										<li><a href="#about">About us</a></li>

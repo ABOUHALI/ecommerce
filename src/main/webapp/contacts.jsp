@@ -33,7 +33,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="afficherVoyages?id_client=${client1.getId() }" class="site_title"><i class="fa fa-money"></i> <span>ACCEUIL</span></a>
+              <a href="homeClient" class="site_title"><i class="fa fa-money"></i> <span>ACCEUIL</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -70,7 +70,7 @@
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>NOTRE RESERVATION</h3>
+                <h3>MES RESERVATION</h3>
               </div>
 
             </div>

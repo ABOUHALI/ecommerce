@@ -75,12 +75,13 @@ doPost(request, response);	}
 		}else if(path.equals("/modifierFournisseur")) {
 			Integer id = Integer.parseInt(request.getParameter("id_fourn"));
 			String nom =request.getParameter("nom");
+			System.out.println("modif : "+nom);
 			String prenom =request.getParameter("prenom");
 			String tel = request.getParameter("tel");
 			String email =request.getParameter("email");
 			Fournisseur f = new Fournisseur();
 			f.setEmail(email);
-			f.setNom(prenom);
+			f.setNom(nom);
 			f.setIdfournisseur(id);
 			f.setTel(tel);
 			f.setPrenom(prenom);
